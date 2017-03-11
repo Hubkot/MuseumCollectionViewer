@@ -1,3 +1,1 @@
-<#if licenseFirst??>
-${licenseFirst} Mit License
-</#if>
+<#if licenseFirst??>${licenseFirst} Museum Collection Viewer - Mit License */</#if>
