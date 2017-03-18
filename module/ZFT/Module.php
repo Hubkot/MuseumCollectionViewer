@@ -11,6 +11,7 @@ use Zend\ServiceManager\Factory\InvokableFactory;
 use ZFT\User\MemoryIdentityMap;
 use ZFT\User\PostgresDataMapper;
 use ZFT\User\RepositoryFactory;
+use ZFT\User\Repository as UserRepository;
 class Module implements ServiceProviderInterface {
     
     public function getServiceConfig() {
