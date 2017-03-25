@@ -19,8 +19,11 @@
 
         <!-- Scripts -->
         <?= $this->headScript()
+            ->prependFile($this->basePath('js/jquery.mousewheel.js'))
+            ->prependFile($this->basePath('js/jquery.panzoom.min.js'))
             ->prependFile($this->basePath('js/bootstrap.min.js'))
             ->prependFile($this->basePath('js/jquery-3.1.0.min.js'))
+            
         ?>
     </head>
     <body>
