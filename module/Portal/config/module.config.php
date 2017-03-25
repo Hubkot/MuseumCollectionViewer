@@ -7,7 +7,9 @@
 
 namespace Portal;
 
+use Portal\Controller\AdminController;
 use Portal\Controller\IndexController;
+use Portal\Controller\ObjectController;
 use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;
 
@@ -20,6 +22,26 @@ return [
                     'route'    => '/',
                     'defaults' => [
                         'controller' => IndexController::class,
+                        'action'     => 'index',
+                    ],
+                ],
+            ],
+            'admin' => [
+                'type' => Literal::class,
+                'options' => [
+                    'route'    => '/admin',
+                    'defaults' => [
+                        'controller' => AdminController::class,
+                        'action'     => 'index',
+                    ],
+                ],
+            ],
+             'object' => [
+                'type' => Literal::class,
+                'options' => [
+                    'route'    => '/object',
+                    'defaults' => [
+                        'controller' => ObjectController::class,
                         'action'     => 'index',
                     ],
                 ],
@@ -38,7 +60,9 @@ return [
     ],
     'controllers' => [
         'factories' => [
-            Controller\IndexController::class => Controller\IndexControllerFactory::class
+            Controller\IndexController::class => Controller\UserRelatedControllerFactory::class,
+            Controller\ObjectController::class => Controller\UserRelatedControllerFactory::class,
+            Controller\AdminController::class => Controller\UserRelatedControllerFactory::class
         ],
     ],
     'view_manager' => [
