@@ -7,9 +7,11 @@
 
 namespace Portal;
 
+use Application\Service\Factory\ImageHandlerFactory;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
 use Portal\Controller\IndexController;
 use Portal\Controller\ObjectController;
+use Portal\Service\ImageHandler;
 use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;
 use Zend\ServiceManager\Factory\InvokableFactory;
@@ -54,6 +56,9 @@ return [
             Controller\IndexController::class => InvokableFactory::class,
             Controller\ObjectController::class => InvokableFactory::class,
         ],
+    ],
+    'service_manager' => [
+        ImageHandler::class => ImageHandlerFactory::class,
     ],
     'view_manager' => [
         'display_not_found_reason' => true,

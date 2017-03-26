@@ -7,6 +7,7 @@
 
 namespace Portal\Controller;
 
+use Portal\Service\Someservice;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
@@ -15,6 +16,9 @@ class ObjectController extends AbstractActionController
    
     public function indexAction()
     {
-        return new ViewModel();
+      $napis_service = new Someservice;
+      echo $napis_service->printSmt('Witaj Świecie');
+      
+      return new ViewModel();
     }
 }

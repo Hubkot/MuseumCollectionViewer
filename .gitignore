@@ -6,3 +6,7 @@ data/cache/*
 phpunit.xml
 ubuntu-xenial-16.04-cloudimg-console.log
 nbproject/
+/module/Portal/src/Service/Factory/PostManagerFactory.php
+/module/Portal/src/Service/PostManager.php
+/module/Portal/src/Service/Someservice.php
+/module/Portal/src/Service/Factory/SomeserviceFactory.php
