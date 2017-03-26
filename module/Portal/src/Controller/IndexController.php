@@ -9,21 +9,13 @@ namespace Portal\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-use ZFT\User;
 
 class IndexController extends AbstractActionController
 {
-    //tworzymy konstruktora
-    /** @var User\Repository */
-    private $userRepository;
-    
-    public function __construct(User\Repository $userRepository){
-        $this->userRepository = $userRepository;
-    }
+ 
     
     public function indexAction()
     {
-        $user = $this->userRepository->getUserById(5);
         return new ViewModel();
     }
 }

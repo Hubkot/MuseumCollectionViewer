@@ -10,8 +10,9 @@ namespace Portal;
 use Zend\EventManager\EventInterface;
 use Zend\ModuleManager\Feature\BootstrapListenerInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
+use Zend\ModuleManager\Feature\ServiceProviderInterface;
 
-class Module implements ConfigProviderInterface, BootstrapListenerInterface
+class Module implements ConfigProviderInterface, BootstrapListenerInterface, ServiceProviderInterface
 {
     const VERSION = '3.0.2dev';
 
@@ -19,9 +20,15 @@ class Module implements ConfigProviderInterface, BootstrapListenerInterface
     {
         return include __DIR__ . '/../config/module.config.php';
     }
+    
 
     public function onBootstrap(EventInterface $e) {
         return;
+    }
+
+    public function getServiceConfig() {
+        return [
+                  ];
     }
 
 }

@@ -7,11 +7,12 @@
 
 namespace Portal;
 
-use Portal\Controller\AdminController;
+use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
 use Portal\Controller\IndexController;
 use Portal\Controller\ObjectController;
 use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;
+use Zend\ServiceManager\Factory\InvokableFactory;
 
 return [
     'router' => [
@@ -26,17 +27,7 @@ return [
                     ],
                 ],
             ],
-            'admin' => [
-                'type' => Literal::class,
-                'options' => [
-                    'route'    => '/admin',
-                    'defaults' => [
-                        'controller' => AdminController::class,
-                        'action'     => 'index',
-                    ],
-                ],
-            ],
-             'object' => [
+            'object' => [
                 'type' => Literal::class,
                 'options' => [
                     'route'    => '/object',
@@ -60,9 +51,8 @@ return [
     ],
     'controllers' => [
         'factories' => [
-            Controller\IndexController::class => Controller\UserRelatedControllerFactory::class,
-            Controller\ObjectController::class => Controller\UserRelatedControllerFactory::class,
-            Controller\AdminController::class => Controller\UserRelatedControllerFactory::class
+            Controller\IndexController::class => InvokableFactory::class,
+            Controller\ObjectController::class => InvokableFactory::class,
         ],
     ],
     'view_manager' => [
@@ -81,4 +71,18 @@ return [
             __DIR__ . '/../view',
         ],
     ],
+    'doctrine' => [
+        'driver' => [
+            __NAMESPACE__. '_driver' => [
+                'class' => AnnotationDriver::class,
+                'cache' => 'array',
+                'paths' => [__DIR__.'/../src/Entity']
+            ],
+            'orm_default' => [
+                'drivers' => [
+                    __NAMESPACE__ .'\Entity' => __NAMESPACE__ .'_driver'
+                ]
+            ]
+        ]
+    ]
 ];
