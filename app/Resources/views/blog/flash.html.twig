@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="wrapper">
+        <div id="container">
+            <div id="welcome">
+                <h1><span>Welcome to</span> Blog App</h1>
+            </div>
+            <form method="post" id="formularz">
+                <input type="text" name="text"/>
+                <input type="submit" />
+            </form>
+        </div>
+        {% for flash_message in app.session.flashBag.get('notice') %}
+            <div class="flash_notice">
+                {{flash_message}}
+            </div>
+        {% endfor %}
+    </div>
+            
+{% endblock %}
