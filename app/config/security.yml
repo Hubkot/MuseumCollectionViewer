@@ -1,7 +1,5 @@
 # To get started with security, check out the documentation:
 # http://symfony.com/doc/current/security.html
-parameters:
-    cocobombo: "nie ma mnie tu"
 security:
 
     # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded

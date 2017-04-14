@@ -39,7 +39,46 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
-
+assetic:
+    debug:            "%kernel.debug%"
+    use_controller:   "%kernel.debug%"
+    filters:
+        cssrewrite: ~
+    assets:
+        jquery_js:
+            inputs:
+                - '%kernel.root_dir%/../vendor/components/jquery/jquery.min.js'
+        jquery_mousewheel_js:
+            inputs:
+                - '%kernel.root_dir%/../vendor/components/jquery-mousewheel/jquery.mousewheel.js'
+        bootstrap_js:
+            inputs:
+                - '%kernel.root_dir%/../vendor/twbs/bootstrap/dist/js/bootstrap.min.js'
+        twbs_js_and_jq:
+            inputs:
+                - '%kernel.root_dir%/../vendor/components/jquery/jquery.min.js'
+                - '%kernel.root_dir%/../vendor/twbs/bootstrap/dist/js/bootstrap.min.js'
+        twbs_css:
+            inputs:
+                 - '%kernel.root_dir%/../vendor/twbs/bootstrap/dist/css/bootstrap.css'
+        panzoom_js:
+            inputs:
+                - '%kernel.root_dir%/../vendor/components/jquery.panzoom-master/src/panzoom.js'
+        bootstrap_fonts_woff:
+            inputs:
+                - '%kernel.root_dir%/../vendor/twbs/bootstrap/fonts/glyphicons-halflings-regular.woff'
+            output: fonts/glyphicons-halflings-regular.woff
+        bootstrap_fonts_ttf:            
+                inputs:
+                    - '%kernel.root_dir%/../vendor/twbs/bootstrap/fonts/glyphicons-halflings-regular.ttf'
+                output: fonts/glyphicons-halflings-regular.ttf
+        bootstrap_fonts_svg:
+            inputs:
+                - '%kernel.root_dir%/../vendor/twbs/bootstrap/fonts/glyphicons-halflings-regular.svg'
+            output: fonts/glyphicons-halflings-regular.svg
+        bootstrap_fonts_eot:
+            inputs:
+                - '%kernel.root_dir%/../vendor/twbs/bootstrap/fonts/glyphicons-halflings-regular.eot'    
 # Doctrine Configuration
 doctrine:
     dbal:
