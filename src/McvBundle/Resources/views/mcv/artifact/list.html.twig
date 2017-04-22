@@ -1,4 +1,3 @@
-{% extends '/artifact/basic.html.twig' %}
 
 {% block body %}
     <div id="wrapper">
@@ -6,7 +5,12 @@
             <div id="welcome">
                 <h1><span>Welcome to</span> MCV View Resource</h1>
                 <p>
-                   To jest widok listy zabytków
+                   To jest widok listy zabytków:
+                </p>
+                <p>
+                    {% for i in artifact %}
+                        <a href="{{path('artifact_description', {'inventoryNumber': i.inventoryNumber}) }}"> {{ i.inventoryNumber }} <br />
+                    {% endfor %}
                 </p>
             </div>
 {% endblock %}
