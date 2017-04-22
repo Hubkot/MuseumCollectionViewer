@@ -1,0 +1,15 @@
+{% block body %}
+    <div id="wrapper">
+        <div id="container">
+            <div id="welcome">
+                <h1><span>Welcome to</span> MCV View Resource - Artifact Description View</h1>
+                <p>
+                   To jest widok opisu zabytku:
+                </p>
+                <p>
+                    <b>{{artifact.id}}</b>
+                    {{artifact.inventoryNumber}}
+                </p>
+                <a href="{{path('artifact_list')}}">Wróć do listy</a>
+            </div>
+{% endblock %}
