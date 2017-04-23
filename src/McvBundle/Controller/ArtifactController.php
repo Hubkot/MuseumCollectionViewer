@@ -2,16 +2,15 @@
 
 namespace McvBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 class ArtifactController extends Controller{
     /**
      * 
      * @Route("/artifact", name="artifact_index")
      */
     public function indexAction(){
-        
         return $this->render('McvBundle:mcv:artifact/basic.html.twig');
     }
     /**
@@ -38,8 +37,13 @@ class ArtifactController extends Controller{
         $artifact = $this->getDoctrine()
                 ->getRepository('McvBundle:Artifact')
                 ->findOneBy(['inventoryNumber' => $inventoryNumber]);
-        print_r($artifact);
-        return $this->render('McvBundle:mcv:artifact/description.html.twig', ['artifact' => $artifact]);
+        
+        $artifactDescription = $this->getDoctrine()
+                ->getRepository('McvBundle:ArtifactDescription')
+                ->findOneBy(['artifact_id' => $artifact->getId()]);
+        return $this->render('McvBundle:mcv:artifact/description.html.twig', ['artifact' => $artifact,'artifact_description' => $artifactDescription]);
     }
+  
+    
     
 }
