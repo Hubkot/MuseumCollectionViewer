@@ -8,10 +8,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/admin")
+     * @Route("/control")
      */
     public function indexAction()
     {
-        return $this->render('McvAdminBundle:Default:index.html.twig');
+        return $this->render('McvAdminBundle:layout:admin.list.html.twig');
     }
 }

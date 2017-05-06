@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class CatalogController extends Controller
 {
        /**
-     * @Route("/admin/catalog")
+     * @Route("/control/catalog")
      */
     public function indexAction()
     {
