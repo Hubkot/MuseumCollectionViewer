@@ -2,9 +2,9 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Wiksa{% endblock %}</title>
         {% block stylesheets %}
-        <link rel="stylesheet" type="text/css" href="{{asset('assetic/twbs_css.css')}}"/>
+               <link rel="stylesheet" href="{{asset('assetic/twbs_css.css')}}" type="text/css">
         {% endblock %}
         
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
@@ -55,7 +55,7 @@
         <div class="col-md-4">
           <h2>Prezentowanie</h2>
           <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">Szczegóły &raquo;</a></p>
+          <p><a class="btn btn-default" href="{{path('artifact_index')}}" role="button">Szczegóły &raquo;</a></p>
         </div>
         <div class="col-md-4">
           <h2>Zarządzanie</h2>
