@@ -18,7 +18,9 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new AppBundle\AppBundle(),
             new McvBundle\McvBundle(),
+            new McvAdminBundle\McvAdminBundle(),
             new Test\TestBundle(),
+            
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

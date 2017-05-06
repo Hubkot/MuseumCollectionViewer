@@ -1,10 +1,14 @@
-test:
-    resource: "@TestBundle/Controller/"
-    type:     annotation
-    prefix:   /
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
 mcv:
     resource: "@McvBundle/Controller/"
     type:     annotation
+mcv_admin:
+    resource: "@McvAdminBundle/Controller/"
+    type:     annotation
+    prefix:   /
+test:
+    resource: "@TestBundle/Controller/"
+    type:     annotation
+    prefix:   /
