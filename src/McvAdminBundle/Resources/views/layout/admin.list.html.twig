@@ -1,0 +1,134 @@
+{% extends "McvAdminBundle:layout:admin.layout.html.twig" %}
+
+{% block body %}
+ 
+
+And as easy as this is, Symfony also provides a command-line interface for generating a basic bundle skeleton:
+
+ php bin/console generate:bundle --namespace=Acme/TestBundle
+
+The bundle skeleton generates a basic controller, template and routing resource that can be customized. You'll learn more about Symfony's command-line tools later.
+
+Whenever creating a new bundle or using a third-party bundle, always make sure the bundle has been enabled in registerBundles(). When using the generate:bundle command, this is done for you.
+Bundle Directory Structure¶
+
+The directory structure of a bundle is simple and flexible. By default, the bundle system follows a set of conventions that help to keep code consistent between all Symfony bundles. Take a look at AcmeDemoBundle, as it contains some of the most common elements of a bundle:
+
+Controller/
+    Contains the controllers of the bundle (e.g. RandomController.php).
+DependencyInjection/
+    Holds certain Dependency Injection Extension classes, which may import service configuration, register compiler passes or more (this directory is not necessary).
+Resources/config/
+    Houses configuration, including routing configuration (e.g. routing.yml).
+Resources/views/
+    Holds templates organized by controller name (e.g. Random/index.html.twig).
+Resources/public/
+    Contains web assets (images, stylesheets, etc) and is copied or symbolically linked into the project web/ directory via the assets:install console command.
+Tests/
+    Holds all tests for the bundle.
+
+A bundle can be as small or large as the feature it implements. It contains only the files you need and nothing else.
+
+As you move through the guides, you'll learn how to persist objects to a database, create and validate forms, create translations for your application, write tests and much more. Each of these has their own place and role within the bundle.
+Learn more¶
+
+    Best Practices for Reusable Bundles
+    How to Create Friendly Configuration for a Bundle
+    
+
+And as easy as this is, Symfony also provides a command-line interface for generating a basic bundle skeleton:
+
+ php bin/console generate:bundle --namespace=Acme/TestBundle
+
+The bundle skeleton generates a basic controller, template and routing resource that can be customized. You'll learn more about Symfony's command-line tools later.
+
+Whenever creating a new bundle or using a third-party bundle, always make sure the bundle has been enabled in registerBundles(). When using the generate:bundle command, this is done for you.
+Bundle Directory Structure¶
+
+The directory structure of a bundle is simple and flexible. By default, the bundle system follows a set of conventions that help to keep code consistent between all Symfony bundles. Take a look at AcmeDemoBundle, as it contains some of the most common elements of a bundle:
+
+Controller/
+    Contains the controllers of the bundle (e.g. RandomController.php).
+DependencyInjection/
+    Holds certain Dependency Injection Extension classes, which may import service configuration, register compiler passes or more (this directory is not necessary).
+Resources/config/
+    Houses configuration, including routing configuration (e.g. routing.yml).
+Resources/views/
+    Holds templates organized by controller name (e.g. Random/index.html.twig).
+Resources/public/
+    Contains web assets (images, stylesheets, etc) and is copied or symbolically linked into the project web/ directory via the assets:install console command.
+Tests/
+    Holds all tests for the bundle.
+
+A bundle can be as small or large as the feature it implements. It contains only the files you need and nothing else.
+
+As you move through the guides, you'll learn how to persist objects to a database, create and validate forms, create translations for your application, write tests and much more. Each of these has their own place and role within the bundle.
+Learn more¶
+
+    Best Practices for Reusable Bundles
+    How to Create Friendly Configuration for a Bundle
+
+And as easy as this is, Symfony also provides a command-line interface for generating a basic bundle skeleton:
+
+ php bin/console generate:bundle --namespace=Acme/TestBundle
+
+The bundle skeleton generates a basic controller, template and routing resource that can be customized. You'll learn more about Symfony's command-line tools later.
+
+Whenever creating a new bundle or using a third-party bundle, always make sure the bundle has been enabled in registerBundles(). When using the generate:bundle command, this is done for you.
+Bundle Directory Structure¶
+
+The directory structure of a bundle is simple and flexible. By default, the bundle system follows a set of conventions that help to keep code consistent between all Symfony bundles. Take a look at AcmeDemoBundle, as it contains some of the most common elements of a bundle:
+
+Controller/
+    Contains the controllers of the bundle (e.g. RandomController.php).
+DependencyInjection/
+    Holds certain Dependency Injection Extension classes, which may import service configuration, register compiler passes or more (this directory is not necessary).
+Resources/config/
+    Houses configuration, including routing configuration (e.g. routing.yml).
+Resources/views/
+    Holds templates organized by controller name (e.g. Random/index.html.twig).
+Resources/public/
+    Contains web assets (images, stylesheets, etc) and is copied or symbolically linked into the project web/ directory via the assets:install console command.
+Tests/
+    Holds all tests for the bundle.
+
+A bundle can be as small or large as the feature it implements. It contains only the files you need and nothing else.
+
+As you move through the guides, you'll learn how to persist objects to a database, create and validate forms, create translations for your application, write tests and much more. Each of these has their own place and role within the bundle.
+Learn more¶
+
+    Best Practices for Reusable Bundles
+    How to Create Friendly Configuration for a Bundle
+
+And as easy as this is, Symfony also provides a command-line interface for generating a basic bundle skeleton:
+
+ php bin/console generate:bundle --namespace=Acme/TestBundle
+
+The bundle skeleton generates a basic controller, template and routing resource that can be customized. You'll learn more about Symfony's command-line tools later.
+
+Whenever creating a new bundle or using a third-party bundle, always make sure the bundle has been enabled in registerBundles(). When using the generate:bundle command, this is done for you.
+Bundle Directory Structure¶
+
+The directory structure of a bundle is simple and flexible. By default, the bundle system follows a set of conventions that help to keep code consistent between all Symfony bundles. Take a look at AcmeDemoBundle, as it contains some of the most common elements of a bundle:
+
+Controller/
+    Contains the controllers of the bundle (e.g. RandomController.php).
+DependencyInjection/
+    Holds certain Dependency Injection Extension classes, which may import service configuration, register compiler passes or more (this directory is not necessary).
+Resources/config/
+    Houses configuration, including routing configuration (e.g. routing.yml).
+Resources/views/
+    Holds templates organized by controller name (e.g. Random/index.html.twig).
+Resources/public/
+    Contains web assets (images, stylesheets, etc) and is copied or symbolically linked into the project web/ directory via the assets:install console command.
+Tests/
+    Holds all tests for the bundle.
+
+A bundle can be as small or large as the feature it implements. It contains only the files you need and nothing else.
+
+As you move through the guides, you'll learn how to persist objects to a database, create and validate forms, create translations for your application, write tests and much more. Each of these has their own place and role within the bundle.
+Learn more¶
+
+    Best Practices for Reusable Bundles
+    How to Create Friendly Configuration for a Bundle
+{% endblock %}
