@@ -3,14 +3,14 @@
     Author     : hubert
 */
 
+body{
+    color:#fff;
+}
 
  #menu-item-title {
     margin-left: 15px;
 }
 
-.panel-body {
-}
 .panel{
-
-margin-right: 50px;
+    margin-right: 50px;
 }

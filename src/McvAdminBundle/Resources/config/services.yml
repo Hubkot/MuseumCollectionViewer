@@ -2,6 +2,15 @@ services:
 #    mcv_admin.example:
 #        class: McvAdminBundle\Example
 #        arguments: ["@service_id", "plain_value", "%parameter%"]
+framework:
+    router:
+        resource: "%kernel.root_dir%/config/routing_dev.yml"
+        strict_requirements: true
+    profiler: { only_exceptions: false }
+
+web_profiler:
+    toolbar: true
+    intercept_redirects: false
 assetic:
     debug:            "%kernel.debug%"
     use_controller:   "%kernel.debug%"
@@ -11,4 +20,6 @@ assetic:
         admin_css:
             inputs:
                 - '@McvAdminBundle/Resources/public/admin.css'
-            
+parameters:
+   shared_dir: %kernel.root_dir%/../web/shared         
+   upload_dir: %kernel.root_dir%/../web/upload         
