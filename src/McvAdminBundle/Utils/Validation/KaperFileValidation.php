@@ -8,7 +8,7 @@
  */
 namespace McvAdminBundle\Utils\Validation;
 
-use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 
 class KaperFileValidation {
@@ -16,6 +16,18 @@ class KaperFileValidation {
     
     public function __construct($filename){ $this->filename = $filename; }
 
+    public function validateFileName(): bool
+    {
+        $session = new Session();
+        if(count(preg_split('/[_.]/', $this->filename)) == 4){
+           return true;
+        }
+        else{
+            $session->getFlashBag()->add('warning', 'Nazwa pliku '.$this->filename .' jest niezgodna ze standardem KAPER [LinkDoStandardu]');
+            return false;
+        }
+    }
+    
     public function prepareFileName()
     {
         $exploded_name = preg_split('/[_.]/', $this->filename);
@@ -27,16 +39,5 @@ class KaperFileValidation {
         ];
         
         return $associativeNameArray;
-    }
-    public function validateFileName(): bool
-    {
-        if(count(preg_split('/[_.]/', $this->filename)) == 4){
-           return true;
-        }
-        else{
-            $FlashBag = new FlashBag();
-            $FlashBag->add('notice', 'Nazwa pliku ',$this->filename ,' jest niezgodna ze standardem KAPER [Zajrzyj do : POMOC]');
-            return false;
-        }
     }
 }

@@ -5,6 +5,7 @@ namespace McvAdminBundle\Controller;
 use McvAdminBundle\Service\CollectionFinder;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class CatalogController extends Controller
 {
@@ -15,8 +16,7 @@ class CatalogController extends Controller
     {
         $findFiles = new CollectionFinder($this->getParameter('upload_dir'));
         $findFiles->findAll();
-        echo '<pre>', print_r($findFiles),'</pre>';
-        return $this->render('McvAdminBundle:layout:admin.list.html.twig');
+        return $this->render('McvAdminBundle:catalog:list.catalog.html.twig', ['findFiles' => $findFiles]);
     }
     
     

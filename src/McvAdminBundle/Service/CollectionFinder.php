@@ -15,10 +15,12 @@ class CollectionFinder {
     
     private $finderPath;
     private $preparedFiles = [];
+    
     public function __construct($path) {
         $this->finderPath = $path;
     }
-    
+    // Wyszukuje pliki znajdujące się wewnątrz folderu podanego w konstruktorze klasy.
+    // Na każdym z plików przeprowadza walidację pod względem zgodności ze standardem Kaper
     public function findAll(){
         $finder = new Finder();    
         $finder->files()->in(($this->finderPath));
@@ -26,8 +28,6 @@ class CollectionFinder {
             $filename = $this->getFileName($path);
             $validator = new KaperFileValidation($filename);
             if($validator->validateFileName()){array_push($this->preparedFiles, $validator->prepareFileName());};
-            #echo '<pre>', print_r($path->getRealPath(),true),'</pre>';
-            
         }
         return $this->preparedFiles;
     }
@@ -35,6 +35,9 @@ class CollectionFinder {
     public function getFileName($path){
         $pathExplode = explode('/', $path);
         return $pathExplode[count($pathExplode)-1];
+    }
+    public function getPreparedFiles(){
+        return $this->preparedFiles;
     }
 }
     

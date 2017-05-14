@@ -12,10 +12,14 @@
         <script src="{{asset('assetic/jquery_js.js')}}"></script>
         <script src="{{asset('assetic/bootstrap_js.js')}}"></script>
     </head>
-    <body style="background-color: #30363c">
-<!--end of scripts and stylesheets -->
 
-<!--nav-->
+    <body style="background-color: #30363c">
+        {% for flash_message in app.session.flashBag.get('warning') %}
+            <div class="alert alert-warning">
+                {{ flash_message }}
+            </div>
+        {% endfor %}
+
     <nav role="navigation" class="navbar navbar-custom">
         <div class="container-fluid">
           <!-- Brand and toggle get grouped for better mobile display -->
@@ -74,10 +78,10 @@
                     Panel Główny
                 </h3>
               </div>
-              <div class="panel-body">
+              <div class="body-content">
                     {% block body %}
                     {% endblock %}
-              </div><!-- panel body -->
+              </div>
             </div>
         </div><!-- content -->
       </div>
