@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class CatalogController extends Controller
 {
      /**
-     * @Route("/control/catalog")
+     * @Route("/catalog")
      */
     public function indexAction()
     {

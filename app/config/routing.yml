@@ -7,8 +7,8 @@ mcv:
 mcv_admin:
     resource: "@McvAdminBundle/Controller/"
     type:     annotation
-    prefix:   /
+    prefix:   /control
 test:
     resource: "@TestBundle/Controller/"
     type:     annotation
-    prefix:   /
+    prefix:   /test
