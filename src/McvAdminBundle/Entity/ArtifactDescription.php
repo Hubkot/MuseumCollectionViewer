@@ -1,6 +1,6 @@
 <?php
 
-namespace McvBundle\Entity;
+namespace McvAdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping\OneToOne;
  * ArtifactDescription
  *
  * @ORM\Table(name="artifact_description")
- * @ORM\Entity(repositoryClass="McvBundle\Repository\ArtifactDescriptionRepository")
+ * @ORM\Entity(repositoryClass="McvAdminBundle\Repository\ArtifactDescriptionRepository")
  */
 class ArtifactDescription
 {

@@ -20,7 +20,7 @@ class ArtifactController extends Controller{
     public function showListAction(){
         
         $artifact = $this->getDoctrine()
-                ->getRepository('McvBundle:Artifact')
+                ->getRepository('McvAdminBundle:Artifact')
                 ->findAll();
         if(!$artifact){
             throw $this->createNotFoundException(
@@ -35,11 +35,11 @@ class ArtifactController extends Controller{
     public function descriptionAction($inventoryNumber){
         
         $artifact = $this->getDoctrine()
-                ->getRepository('McvBundle:Artifact')
+                ->getRepository('McvAdminBundle:Artifact')
                 ->findOneBy(['inventoryNumber' => $inventoryNumber]);
         
         $artifactDescription = $this->getDoctrine()
-                ->getRepository('McvBundle:ArtifactDescription')
+                ->getRepository('McvAdminBundle:ArtifactDescription')
                 ->findOneBy(['artifact_id' => $artifact->getId()]);
         return $this->render('McvBundle:mcv:artifact/description.html.twig', ['artifact' => $artifact,'artifact_description' => $artifactDescription]);
     }

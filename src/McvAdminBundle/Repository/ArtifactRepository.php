@@ -1,6 +1,6 @@
 <?php
 
-namespace McvBundle\Repository;
+namespace McvAdminBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 
