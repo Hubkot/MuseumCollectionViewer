@@ -10,8 +10,8 @@ namespace McvAdminBundle\Utils\Validation;
 
 use Symfony\Component\HttpFoundation\Session\Session;
 
-
 class KaperFileValidation {
+    
     private $filename;
     
     public function __construct($filename){ $this->filename = $filename; }
