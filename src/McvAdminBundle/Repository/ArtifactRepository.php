@@ -1,8 +1,9 @@
 <?php
 
-namespace McvBundle\Repository;
+namespace McvAdminBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use McvAdminBundle\Entity\Artifact;
 
 /**
  * ArtifactRepository
@@ -12,4 +13,11 @@ use Doctrine\ORM\EntityRepository;
  */
 class ArtifactRepository extends EntityRepository
 {
+    public function isExist($inventoryNumber){
+        
+    }
+    
+    public function createNew($inventoryNumber){
+      
+    }
 }

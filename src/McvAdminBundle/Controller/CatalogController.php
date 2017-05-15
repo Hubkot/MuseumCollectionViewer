@@ -16,6 +16,7 @@ class CatalogController extends Controller
     {
         $findFiles = new CollectionFinder($this->getParameter('upload_dir'));
         $findFiles->findAll();
+       
         return $this->render('McvAdminBundle:catalog:list.catalog.html.twig', ['findFiles' => $findFiles]);
     }
     

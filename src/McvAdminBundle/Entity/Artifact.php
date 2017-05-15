@@ -1,6 +1,6 @@
 <?php
 
-namespace McvBundle\Entity;
+namespace McvAdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Artifact
  *
  * @ORM\Table(name="artifact")
- * @ORM\Entity(repositoryClass="McvBundle\Repository\ArtifactRepository")
+ * @ORM\Entity(repositoryClass="McvAdminBundle\Repository\ArtifactRepository")
  */
 class Artifact
 {
