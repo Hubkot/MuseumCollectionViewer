@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Wiksa{% endblock %}</title>
+        {% block stylesheets %}
+               <link rel="stylesheet" href="{{asset('assetic/twbs_css.css')}}" type="text/css">
+        {% endblock %}
+        
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <script src="{{asset('assetic/jquery_js.js')}}"></script>
+        <script src="{{asset('assetic/panzoom_js.js')}}"></script>
+        <script src="{{asset('assetic/bootstrap_js.js')}}"></script>
+        <script src="{{asset('assetic/jquery_mousewheel_js.js')}}"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{{path('artifact_index')}}">Museum Collection Viewer</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <form class="navbar-form navbar-right">
+            <div class="form-group">
+              <input type="text" placeholder="Email" class="form-control">
+            </div>
+            <div class="form-group">
+              <input type="password" placeholder="Password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success">Zaloguj się</button>
+          </form>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Witaj użytkowniku!</h1>
+        <p>Museum Collection Viewer umożliwia zarzadzanie i prezentację zbiorów online dla jednostek kultury takich jak muzea, jednostki o profilu archeologicznym, uniwersytetów itp. Projekt dostępny jest na licencji open source [LICENCJA].</p>
+        <p>Aktualna wersja jest: 0.0003 alfa ;). Lista zmian dostępna pod adresem: [LINK]</p>
+        <p><a class="btn btn-primary btn-lg" href="https://github.com/Hubkot/MuseumCollectionViewer/" role="button">Pobierz z Githuba</a></p>
+      </div>
+    </div>
+
+   
+
+        {% block body %}          
+        {% endblock %}
+           <hr>
+
+      <footer>
+        <p>&copy; 2017 Hubkos. Jumbotron Bootstrap Theme. </p>
+      </footer>
+    </div> <!-- /container -->
+    
+       
+    </body>
+</html>

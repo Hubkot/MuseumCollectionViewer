@@ -9,8 +9,8 @@ namespace McvBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use McvBundle\Entity\Artifact;
-use McvBundle\Entity\ArtifactDescription;
+use McvAdminBundle\Entity\Artifact;
+use McvAdminBundle\Entity\ArtifactDescription;
 
 class LoadArtifactData implements FixtureInterface{
     
