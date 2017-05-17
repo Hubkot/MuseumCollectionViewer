@@ -4,7 +4,7 @@ namespace McvBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use McvBundle\Entity\ArtifactType;
+use McvAdminBundle\Entity\ArtifactType;
 
 /**
  * Description of LoadArtifactTypes

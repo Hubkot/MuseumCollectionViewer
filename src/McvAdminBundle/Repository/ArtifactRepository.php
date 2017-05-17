@@ -13,11 +13,32 @@ use McvAdminBundle\Entity\Artifact;
  */
 class ArtifactRepository extends EntityRepository
 {
-    public function isExist($inventoryNumber){
-        
+    public function isExist($inventory_number)
+    {
+        if($this->findBy(['inventoryNumber' => $inventory_number])){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
-    
-    public function createNew($inventoryNumber){
-      
+    public function importArtifacts($foundedFilesArray,$entityManager){
+         
+        foreach ($foundedFilesArray as $f){
+           if(!$this->isExist($f['inventory_number'])){
+               $rekord = new Artifact();
+               $rekord->setInventoryNumber($f['inventory_number']);
+               $entityManager->persist($rekord);
+               $entityManager->flush();
+               echo 'Tworzę rekord';
+           }
+           elseif($this->isExist($f['inventory_number'])){
+               echo 'Rekord istnieje. Nie robię nic dalej';
+               }
+          else{
+              echo 'Wykryto błąd aplikacji';
+          }
+           
+        }
     }
 }

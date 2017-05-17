@@ -2,10 +2,10 @@
 
 namespace McvAdminBundle\Controller;
 
+use McvAdminBundle\Entity\Artifact;
 use McvAdminBundle\Service\CollectionFinder;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Session\Session;
 
 class CatalogController extends Controller
 {
@@ -15,10 +15,11 @@ class CatalogController extends Controller
     public function indexAction()
     {
         $findFiles = new CollectionFinder($this->getParameter('upload_dir'));
-        $findFiles->findAll();
-       
+        $array = $findFiles->findAll();
+        $em = $this->getDoctrine()->getManager();
+        $artifact = $em->getRepository('McvAdminBundle:Artifact');
+        $artifact->importArtifacts($array,$em);
+//        $artifact->isExist($x);
         return $this->render('McvAdminBundle:catalog:list.catalog.html.twig', ['findFiles' => $findFiles]);
     }
-    
-    
 }
