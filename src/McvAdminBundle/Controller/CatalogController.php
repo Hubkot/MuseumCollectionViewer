@@ -13,6 +13,13 @@ class CatalogController extends Controller
      */
     public function indexAction()
     {
+        return $this->render('McvAdminBundle:layout:admin.list.html.twig');
+    }
+     /**
+     * @Route("/collection-finder", name="collection-finder")
+     */
+    public function finderAction()
+    {
         $findFiles = new CollectionFinder($this->getParameter('upload_dir'));
         $findFiles->findAll();
      
