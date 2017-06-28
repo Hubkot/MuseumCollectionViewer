@@ -14,10 +14,8 @@ class CatalogController extends Controller
     public function indexAction()
     {
         $findFiles = new CollectionFinder($this->getParameter('upload_dir'));
-        $array = $findFiles->findAll();
-        $em = $this->getDoctrine()->getManager();
-        $artifact = $em->getRepository('McvAdminBundle:Artifact');
-        $artifact->importNumbersFromFilenames($array,$em);
+        $findFiles->findAll();
+     
         return $this->render('McvAdminBundle:catalog:list.catalog.html.twig', ['findFiles' => $findFiles]);
     }
 }
