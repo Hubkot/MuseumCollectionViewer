@@ -11,11 +11,11 @@ use Symfony\Component\HttpFoundation\Request;
 class CatalogController extends Controller
 {
      /**
-     * @Route("/catalog", name="catalog")
+     * @Route("/catalog", name="catalog_index")
      */
     public function indexAction()
     {
-        return $this->render('McvAdminBundle:layout:admin.list.html.twig');
+        return $this->render('McvAdminBundle:catalog:index.catalog.html.twig');
     }
      /**
      * @Route("/collection-finder", name="collection-finder")

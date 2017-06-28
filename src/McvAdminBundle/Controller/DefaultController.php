@@ -12,7 +12,6 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        echo 'Default Controller McvAdminBundle indexAction()';
         return $this->render('McvAdminBundle:layout:admin.list.html.twig');
     }
 }

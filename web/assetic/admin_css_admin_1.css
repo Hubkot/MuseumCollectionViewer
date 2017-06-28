@@ -16,4 +16,6 @@ body{
 }
 .body-content{
     color:#000;
+    padding:25px;
+    text-align: justify;
 }
