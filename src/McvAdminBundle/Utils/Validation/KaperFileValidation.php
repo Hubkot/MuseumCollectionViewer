@@ -23,7 +23,7 @@ class KaperFileValidation {
            return true;
         }
         else{
-            $session->getFlashBag()->add('warning', 'Nazwa pliku '.$this->filename .' jest niezgodna ze standardem KAPER [LinkDoStandardu]');
+            $session->getFlashBag()->add('warning', 'Nazwa pliku '.$this->filename .' jest niezgodna ze standardem KAPER [LinkDoStandardu][Zmień_nazwę]');
             return false;
         }
     }
@@ -34,7 +34,7 @@ class KaperFileValidation {
         $associativeNameArray = [
         'inventory_number' => $exploded_name[0],
         'photo_number'     => $exploded_name[1],
-        'category_sign'    => $exploded_name[2],
+        'category_symbol'  => $exploded_name[2],
         'file_extension'   => $exploded_name[3]
         ];
         

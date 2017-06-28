@@ -3,14 +3,17 @@
 namespace McvAdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\ManyToOne;
+use McvAdminBundle\Repository\ArtifactFilesRepository;
 
 /**
  * ArtifactFile
  *
- * @ORM\Table(name="artifact_file")
- * @ORM\Entity(repositoryClass="McvAdminBundle\Repository\ArtifactFileRepository")
+ * @ORM\Table(name="artifact_files")
+ * @ORM\Entity(repositoryClass="ArtifactFilesRepository")
  */
-class ArtifactFile
+class ArtifactFiles
 {
     /**
      * @var int
@@ -63,7 +66,12 @@ class ArtifactFile
      */
     private $fileCopyrights;
 
-
+    /**
+     * Many Files have One Inventory Number.
+     * @ManyToOne(targetEntity="Artifact", inversedBy="files")
+     * @JoinColumn(name="artifact_id", referencedColumnName="id")
+     */
+    private $artifact_number;
     /**
      * Get id
      *

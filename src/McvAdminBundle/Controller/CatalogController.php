@@ -2,7 +2,6 @@
 
 namespace McvAdminBundle\Controller;
 
-use McvAdminBundle\Entity\Artifact;
 use McvAdminBundle\Service\CollectionFinder;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -18,8 +17,7 @@ class CatalogController extends Controller
         $array = $findFiles->findAll();
         $em = $this->getDoctrine()->getManager();
         $artifact = $em->getRepository('McvAdminBundle:Artifact');
-        $artifact->importArtifacts($array,$em);
-//        $artifact->isExist($x);
+        $artifact->importNumbersFromFilenames($array,$em);
         return $this->render('McvAdminBundle:catalog:list.catalog.html.twig', ['findFiles' => $findFiles]);
     }
 }

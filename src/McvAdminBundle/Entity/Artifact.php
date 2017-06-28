@@ -2,13 +2,15 @@
 
 namespace McvAdminBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\OneToMany;
 
 /**
  * Artifact
  *
  * @ORM\Table(name="artifact")
- * @ORM\Entity(repositoryClass="McvAdminBundle\Repository\ArtifactRepository")
+ * @ORM\Entity(repositoryClass="Artifact")
  */
 class Artifact
 {
@@ -28,7 +30,15 @@ class Artifact
      */
     private $inventoryNumber;
 
-
+    /**
+     * One Artifact has Many Files.
+     * @OneToMany(targetEntity="ArtifactFiles", mappedBy="artifact_number")
+     */
+    private $files;
+    
+    public function __construct(){
+        $this->files = new ArrayCollection();
+    }
     /**
      * Get id
      *
@@ -62,5 +72,5 @@ class Artifact
     {
         return $this->inventoryNumber;
     }
+    
 }
-

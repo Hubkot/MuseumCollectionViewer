@@ -4,7 +4,7 @@
     {% if findFiles.getPreparedFiles|length > 0 %}
         {{dump(findFiles.getPreparedFiles)}}
         {% for  f in findFiles.getPreparedFiles %}
-            Plik {{f.inventory_number}}_{{f.photo_number}}_{{f.category_sign}}.{{f.file_extension}} gotowy do wprowadzenia do bazy danych. <br />
+            Plik {{f.inventory_number}}_{{f.photo_number}}_{{f.category_symbol}}.{{f.file_extension}} gotowy do wprowadzenia do bazy danych. <br />
         {% endfor %}
     {%endif%}
 {% endblock %}

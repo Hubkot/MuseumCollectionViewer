@@ -72,6 +72,27 @@ class ArtifactDescription
      * @ORM\Column(name="author", type="integer", nullable=true)
      */
     private $author;
+    
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="workshop", type="integer", nullable=true)
+     */
+    private $workshop;
+    
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="publisher", type="integer", nullable=true)
+     */
+    private $publisher;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="author_nots", type="text", nullable=true)
+     */
+    private $author_nots;
 
     /**
      * @var string
@@ -93,6 +114,13 @@ class ArtifactDescription
      * @ORM\Column(name="created_at", type="simple_array", nullable=true)
      */
     private $createdAt;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="created_at_nots", type="text", nullable=true)
+     */
+    private $createdAt_nots;
 
     /**
      * @var int
@@ -122,8 +150,36 @@ class ArtifactDescription
      */
     private $weight;
 
-
     /**
+     * @var string
+     *
+     * @ORM\Column(name="measurement_nots", type="text", nullable=true)
+     */
+    private $measurement_nots;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="buy_cost", type="integer", nullable=true)
+     */
+    private $buy_cost;
+    
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="current_value", type="integer", nullable=true)
+     */
+    private $current_value;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="modification_history", type="integer", nullable=true)
+     */
+    private $modification_history;
+    
+    
+
+        /**
      * Get id
      *
      * @return int
@@ -457,5 +513,69 @@ class ArtifactDescription
     {
         return $this->weight;
     }
+    function getWorkshop() {
+        return $this->workshop;
+    }
+
+    function getPublisher() {
+        return $this->publisher;
+    }
+
+    function getAuthor_nots() {
+        return $this->author_nots;
+    }
+
+    function getCreatedAt_nots() {
+        return $this->createdAt_nots;
+    }
+
+    function getMeasurement_nots() {
+        return $this->measurement_nots;
+    }
+
+    function getModification_history() {
+        return $this->modification_history;
+    }
+
+    function setWorkshop($workshop) {
+        $this->workshop = $workshop;
+    }
+
+    function setPublisher($publisher) {
+        $this->publisher = $publisher;
+    }
+
+    function setAuthor_nots($author_nots) {
+        $this->author_nots = $author_nots;
+    }
+
+    function setCreatedAt_nots($createdAt_nots) {
+        $this->createdAt_nots = $createdAt_nots;
+    }
+
+    function setMeasurement_nots($measurement_nots) {
+        $this->measurement_nots = $measurement_nots;
+    }
+
+    function setModification_history($modification_history) {
+        $this->modification_history = $modification_history;
+    }
+    function getBuy_cost() {
+        return $this->buy_cost;
+    }
+
+    function getCurrent_value() {
+        return $this->current_value;
+    }
+
+    function setBuy_cost($buy_cost) {
+        $this->buy_cost = $buy_cost;
+    }
+
+    function setCurrent_value($current_value) {
+        $this->current_value = $current_value;
+    }
+
+
 }
 
