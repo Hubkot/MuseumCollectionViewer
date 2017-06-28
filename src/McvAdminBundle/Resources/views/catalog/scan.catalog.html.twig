@@ -7,8 +7,37 @@
     
     {% if findFiles.getPreparedFiles|length > 0 %}
         {{dump(findFiles.getPreparedFiles)}}
+        <table class="table table-striped">
+            <tr>
+                <td><input type="checkbox" id="checkAll"/></td>
+                <td>Nazwa pliku</td>
+                <td>Importuj z puli</td>
+                <td>Usuń z puli</td>
+            </tr>
         {% for  f in findFiles.getPreparedFiles %}
-            Plik {{f.inventory_number}}_{{f.photo_number}}_{{f.category_symbol}}.{{f.file_extension}} gotowy do wprowadzenia do bazy danych. <br />
-        {% endfor %}
+            <tr>
+                <td>
+                    <input type="checkbox" class="checkbox">
+                </td>
+                <td>
+                     Plik {{f.inventory_number}}_{{f.photo_number}}_{{f.category_symbol}}.{{f.file_extension}} gotowy do wprowadzenia do bazy danych. <br />
+                </td>
+                <td>
+                    <button type="button" class="btn btn-success">Importuj</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger">Usuń</button>
+                </td>
+              
+            </tr>
+                {% endfor %}
+        </table>
     {%endif%}
+        <script type="text/javascript">
+            $(document).ready(function(){
+              $("#checkAll").change(function () {
+            $("input:checkbox").prop('checked', $(this).prop("checked"));
+        });
+            })
+        </script>
 {% endblock %}

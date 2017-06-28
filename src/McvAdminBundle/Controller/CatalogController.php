@@ -27,6 +27,7 @@ class CatalogController extends Controller
         $scan_button->handleRequest($request);
         
         if($scan_button->isSubmitted()){
+          
             $findFiles = new CollectionFinder($this->getParameter('upload_dir'));
             $findFiles->findAll();
             return $this->render('McvAdminBundle:catalog:scan.catalog.html.twig', ['findFiles' => $findFiles,'scan_button'=>$scan_button->createView()]);

@@ -21,6 +21,8 @@ class CollectionFinder {
     }
     // Wyszukuje pliki znajdujące się wewnątrz folderu podanego w konstruktorze klasy.
     // Na każdym z plików przeprowadza walidację pod względem zgodności ze standardem Kaper
+    // TODO: dodać możliwość wyboru validatora. Dzięki temu skrypt można będzie wykorzystać w róznoraki sposób.
+    // findAll(Validator $validator)
     public function findAll(){
         $finder = new Finder();    
         $finder->files()->in(($this->finderPath));
