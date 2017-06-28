@@ -1,0 +1,14 @@
+{% extends "McvAdminBundle:layout:admin.list.html.twig"%}
+
+{% block body %}
+    {{ form_start(scan_button) }}
+    {{ form_widget(scan_button) }}
+    {{ form_end(scan_button) }}
+    
+    {% if findFiles.getPreparedFiles|length > 0 %}
+        {{dump(findFiles.getPreparedFiles)}}
+        {% for  f in findFiles.getPreparedFiles %}
+            Plik {{f.inventory_number}}_{{f.photo_number}}_{{f.category_symbol}}.{{f.file_extension}} gotowy do wprowadzenia do bazy danych. <br />
+        {% endfor %}
+    {%endif%}
+{% endblock %}
