@@ -78,7 +78,9 @@ class Artifact
      */
     private $collectionArray;
     
+    
     public function __construct(){
+        
         $this->files = new ArrayCollection();
         $this->collectionArray = new ArrayCollection();
     }

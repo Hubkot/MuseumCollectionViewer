@@ -2,6 +2,8 @@
 
 namespace McvAdminBundle\Controller;
 
+use McvAdminBundle\Entity\Artifact;
+use McvAdminBundle\Entity\Collection;
 use McvAdminBundle\Service\CollectionFinder;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -34,6 +36,24 @@ class CatalogController extends Controller
         }
 
         return $this->render('McvAdminBundle:catalog:list.catalog.html.twig', ['scan_button'=>$scan_button->createView()]);
+    }
+    
+    /**
+     * @Route("catalog/relation", name="relation")
+     */
+    public function addArtifactsToCollecitonAction(){
+        $em = $this->getDoctrine()->getManager();
+        $collection = new Collection();
+        $artifact1 = new Artifact();
+        $artifact2 = new Artifact();
         
+        $collection->setName('Twierdza-Nowa');
+        $artifact1->setInventoryNumber('MHMG-IN-1231');
+        $em->persist($artifact1);
+        $collection->addArtifact($artifact1);
+        $em->persist($collection);
+
+        $em->flush();
+        return $this->render('McvAdminBundle:catalog:index.catalog.html.twig');
     }
 }

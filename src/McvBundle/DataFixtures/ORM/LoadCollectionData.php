@@ -18,7 +18,6 @@ class LoadCollectionData implements FixtureInterface{
             $collection = new Collection();
             $collection->setName('Kolekcja nr ',$i);
             $collection->setDescription('Jest to opis kolekcji nr ', $i);
-            $collection->setStatus(1);
             $manager->persist($collection);
             $manager->flush();
         }

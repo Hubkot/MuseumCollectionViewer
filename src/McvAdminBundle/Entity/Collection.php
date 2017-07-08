@@ -40,13 +40,12 @@ class Collection
     private $description;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="Status", type="integer")
+     * Many Collections have Many Artifacts.
+     * @ManyToMany(targetEntity="Artifact", inversedBy="collectionArray")
+     * @JoinTable(name="indirect_collection_artifact")
      */
-    private $status;
-
-
+    private $artifactArray;
+    
     /**
      * Get id
      *
@@ -104,37 +103,11 @@ class Collection
     {
         return $this->description;
     }
-
-    /**
-     * Set status
-     *
-     * @param integer $status
-     *
-     * @return Collection
-     */
-    public function setStatus($status)
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-
-    /**
-     * Get status
-     *
-     * @return int
-     */
-    public function getStatus()
-    {
-        return $this->status;
-    }
     
-    /**
-     * Many Collections have Many Artifacts.
-     * @ManyToMany(targetEntity="Artifact", inversedBy="collectionArray")
-     * @JoinTable(name="indirect_collection_artifact")
-     */
-    private $artifactArray;
+    public function addArtifact(Artifact $artifact){
+        $artifact->getId($this);
+        $this->artifactArray[] = $artifact;
+    }
 
     public function __construct() {
         $this->artifactArray = new ArrayCollection();
