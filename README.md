@@ -1,18 +1,13 @@
 Museum Collection Viewer :)
 ===
 
-INSTALATION:
-In config/AppKernel.php those lines should be deleted (if they exists):
-
-    new AppBundle\AppBundle(),
-    new Test\TestBundle(),
-===
+A tool for Museum Insititusions to present their collecitons online.
 
 ===
 Entities
 
 Artifact:
-Main entity - holds the Unique Inventory Number (max 100 chars) and price (nullable)
+Main entity - holds the Unique Inventory Number (max 100 chars)
 
 
 
