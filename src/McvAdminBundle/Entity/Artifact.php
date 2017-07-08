@@ -4,6 +4,7 @@ namespace McvAdminBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\OneToMany;
 
 /**
@@ -36,9 +37,7 @@ class Artifact
      */
     private $files;
     
-    public function __construct(){
-        $this->files = new ArrayCollection();
-    }
+   
     /**
      * Get id
      *
@@ -72,5 +71,16 @@ class Artifact
     {
         return $this->inventoryNumber;
     }
+  // ...
+    /**
+     * Many Artifacts belongs to Many Collections.
+     * @ManyToMany(targetEntity="Collection", mappedBy="artifactArray")
+     */
+    private $collectionArray;
     
+    public function __construct(){
+        $this->files = new ArrayCollection();
+        $this->collectionArray = new ArrayCollection();
+    }
+   
 }
