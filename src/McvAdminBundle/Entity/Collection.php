@@ -12,7 +12,7 @@ use McvAdminBundle\Repository\CollectionRepository;
  * Collection
  *
  * @ORM\Table(name="collection")
- * @ORM\Entity(repositoryClass="CollectionRepository")
+ * @ORM\Entity(repositoryClass="McvAdminBundle\Repository\CollectionRepository")
  */
 class Collection
 {
