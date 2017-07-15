@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Artifactfile</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ artifactFile.id }}</td>
+            </tr>
+            <tr>
+                <th>Filename</th>
+                <td>{{ artifactFile.filename }}</td>
+            </tr>
+            <tr>
+                <th>Filepath</th>
+                <td>{{ artifactFile.filepath }}</td>
+            </tr>
+            <tr>
+                <th>Categorysymbol</th>
+                <td>{{ artifactFile.categorySymbol }}</td>
+            </tr>
+            <tr>
+                <th>Photonumber</th>
+                <td>{{ artifactFile.photoNumber }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ artifactFile.status }}</td>
+            </tr>
+            <tr>
+                <th>Filecopyrights</th>
+                <td>{{ artifactFile.fileCopyrights }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('artifact-files_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('artifact-files_edit', { 'id': artifactFile.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

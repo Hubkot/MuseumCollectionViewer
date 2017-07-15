@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Artifacts list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Inventorynumber</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for artifact in artifacts %}
+            <tr>
+                <td><a href="{{ path('artifact_show', { 'id': artifact.id }) }}">{{ artifact.id }}</a></td>
+                <td>{{ artifact.inventoryNumber }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('artifact_show', { 'id': artifact.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('artifact_edit', { 'id': artifact.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('artifact_new') }}">Create a new artifact</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Artifactfiles list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Filename</th>
+                <th>Filepath</th>
+                <th>Categorysymbol</th>
+                <th>Photonumber</th>
+                <th>Status</th>
+                <th>Filecopyrights</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for artifactFile in artifactFiles %}
+            <tr>
+                <td><a href="{{ path('artifact-files_show', { 'id': artifactFile.id }) }}">{{ artifactFile.id }}</a></td>
+                <td>{{ artifactFile.filename }}</td>
+                <td>{{ artifactFile.filepath }}</td>
+                <td>{{ artifactFile.categorySymbol }}</td>
+                <td>{{ artifactFile.photoNumber }}</td>
+                <td>{{ artifactFile.status }}</td>
+                <td>{{ artifactFile.fileCopyrights }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('artifact-files_show', { 'id': artifactFile.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('artifact-files_edit', { 'id': artifactFile.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('artifact-files_new') }}">Create a new artifactFile</a>
+        </li>
+    </ul>
+{% endblock %}

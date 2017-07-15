@@ -1,0 +1,116 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Artifactdescription</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ artifactDescription.id }}</td>
+            </tr>
+            <tr>
+                <th>Artifact_id</th>
+                <td>{{ artifactDescription.artifactid }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ artifactDescription.title }}</td>
+            </tr>
+            <tr>
+                <th>Story</th>
+                <td>{{ artifactDescription.story }}</td>
+            </tr>
+            <tr>
+                <th>Detail</th>
+                <td>{{ artifactDescription.detail }}</td>
+            </tr>
+            <tr>
+                <th>Technique</th>
+                <td>{{ artifactDescription.technique }}</td>
+            </tr>
+            <tr>
+                <th>Material</th>
+                <td>{{ artifactDescription.material }}</td>
+            </tr>
+            <tr>
+                <th>Author</th>
+                <td>{{ artifactDescription.author }}</td>
+            </tr>
+            <tr>
+                <th>Workshop</th>
+                <td>{{ artifactDescription.workshop }}</td>
+            </tr>
+            <tr>
+                <th>Publisher</th>
+                <td>{{ artifactDescription.publisher }}</td>
+            </tr>
+            <tr>
+                <th>Author_nots</th>
+                <td>{{ artifactDescription.authornots }}</td>
+            </tr>
+            <tr>
+                <th>Copyrights</th>
+                <td>{{ artifactDescription.copyrights }}</td>
+            </tr>
+            <tr>
+                <th>Financed</th>
+                <td>{{ artifactDescription.financed }}</td>
+            </tr>
+{#            <tr>
+                <th>Createdat</th>
+                <td>{{ artifactDescription.createdAt }}</td>
+            </tr>#}
+            <tr>
+                <th>Createdat_nots</th>
+                <td>{{ artifactDescription.createdAtnots }}</td>
+            </tr>
+            <tr>
+                <th>Height</th>
+                <td>{{ artifactDescription.height }}</td>
+            </tr>
+            <tr>
+                <th>Width</th>
+                <td>{{ artifactDescription.width }}</td>
+            </tr>
+            <tr>
+                <th>Depth</th>
+                <td>{{ artifactDescription.depth }}</td>
+            </tr>
+            <tr>
+                <th>Weight</th>
+                <td>{{ artifactDescription.weight }}</td>
+            </tr>
+            <tr>
+                <th>Measurement_nots</th>
+                <td>{{ artifactDescription.measurementnots }}</td>
+            </tr>
+            <tr>
+                <th>Buy_cost</th>
+                <td>{{ artifactDescription.buycost }}</td>
+            </tr>
+            <tr>
+                <th>Current_value</th>
+                <td>{{ artifactDescription.currentvalue }}</td>
+            </tr>
+            <tr>
+                <th>Modification_history</th>
+                <td>{{ artifactDescription.modificationhistory }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('artifact-description_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('artifact-description_edit', { 'id': artifactDescription.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

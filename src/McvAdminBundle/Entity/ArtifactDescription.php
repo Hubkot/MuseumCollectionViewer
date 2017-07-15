@@ -521,19 +521,19 @@ class ArtifactDescription
         return $this->publisher;
     }
 
-    function getAuthor_nots() {
+    function getAuthorNots() {
         return $this->author_nots;
     }
 
-    function getCreatedAt_nots() {
+    function getCreatedAtNots() {
         return $this->createdAt_nots;
     }
 
-    function getMeasurement_nots() {
+    function getMeasurementNots() {
         return $this->measurement_nots;
     }
 
-    function getModification_history() {
+    function getModificationHistory() {
         return $this->modification_history;
     }
 
@@ -545,34 +545,34 @@ class ArtifactDescription
         $this->publisher = $publisher;
     }
 
-    function setAuthor_nots($author_nots) {
+    function setAuthorNots($author_nots) {
         $this->author_nots = $author_nots;
     }
 
-    function setCreatedAt_nots($createdAt_nots) {
+    function setCreatedAtNots($createdAt_nots) {
         $this->createdAt_nots = $createdAt_nots;
     }
 
-    function setMeasurement_nots($measurement_nots) {
+    function setMeasurementNots($measurement_nots) {
         $this->measurement_nots = $measurement_nots;
     }
 
-    function setModification_history($modification_history) {
+    function setModificationHistory($modification_history) {
         $this->modification_history = $modification_history;
     }
-    function getBuy_cost() {
+    function getBuyCost() {
         return $this->buy_cost;
     }
 
-    function getCurrent_value() {
+    function getCurrentValue() {
         return $this->current_value;
     }
 
-    function setBuy_cost($buy_cost) {
+    function setBuyCost($buy_cost) {
         $this->buy_cost = $buy_cost;
     }
 
-    function setCurrent_value($current_value) {
+    function setCurrentValue($current_value) {
         $this->current_value = $current_value;
     }
 

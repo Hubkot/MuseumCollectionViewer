@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping\OneToMany;
  * Artifact
  *
  * @ORM\Table(name="artifact")
- * @ORM\Entity(repositoryClass="Artifact")
+ * @ORM\Entity(repositoryClass="McvAdminBundle\Repository\ArtifactRepository")
  */
 class Artifact
 {
@@ -31,13 +31,6 @@ class Artifact
      */
     private $inventoryNumber;
 
-    /**
-     * One Artifact has Many Files.
-     * @OneToMany(targetEntity="ArtifactFiles", mappedBy="artifact_number")
-     */
-    private $files;
-    
-   
     /**
      * Get id
      *
@@ -78,6 +71,16 @@ class Artifact
      */
     private $collectionArray;
     
+     /**
+     * Many Artifacts belongs to Many Collections.
+     * @ManyToMany(targetEntity="Collection", mappedBy="filesArray")
+     */
+    private $artifactArray;
+    
+    public function __toString()
+    {
+        return $this->inventoryNumber;
+    }
     
     public function __construct(){
         

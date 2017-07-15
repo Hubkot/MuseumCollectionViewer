@@ -44,6 +44,7 @@ class Collection
      * @ManyToMany(targetEntity="Artifact", inversedBy="collectionArray")
      * @JoinTable(name="indirect_collection_artifact")
      */
+
     private $artifactArray;
     
     /**
@@ -104,11 +105,21 @@ class Collection
         return $this->description;
     }
     
-    public function addArtifact(Artifact $artifact){
-        $artifact->getId($this);
-        $this->artifactArray[] = $artifact;
+    public function addArtifactArray(Artifact $artifact){
+        if (!$this->tags->contains($tag)) {
+            $this->tags->add($tag);
+        }
+    }
+    
+    public function getArtifactArray(){
+        return $this->artifactArray;
     }
 
+    public function removeArtifactArray(Artifact $artifact)
+    {
+        $this->artifactArray->removeElement($artifact);
+    }
+    
     public function __construct() {
         $this->artifactArray = new ArrayCollection();
     }

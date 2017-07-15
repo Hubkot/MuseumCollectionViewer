@@ -1,3 +1,31 @@
+mcv_admin_artifact_files:
+    resource: "@McvAdminBundle/Controller/ArtifactFilesController.php"
+    type:     annotation
+
+mcv_admin_artifact_files:
+    resource: "@McvAdminBundle/Controller/ArtifactFilesController.php"
+    type:     annotation
+
+mcv_admin_artifact_type:
+    resource: "@McvAdminBundle/Controller/ArtifactTypeController.php"
+    type:     annotation
+
+mcv_admin_artifact_description:
+    resource: "@McvAdminBundle/Controller/ArtifactDescriptionController.php"
+    type:     annotation
+
+mcv_admin_category:
+    resource: "@McvAdminBundle/Controller/CategoryController.php"
+    type:     annotation
+
+mcv_admin_artifact:
+    resource: "@McvAdminBundle/Controller/ArtifactController.php"
+    type:     annotation
+
+mcv_admin_collection:
+    resource: "@McvAdminBundle/Controller/CollectionController.php"
+    type:     annotation
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation

@@ -2,6 +2,7 @@
 
 namespace McvAdminBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
@@ -11,7 +12,7 @@ use McvAdminBundle\Repository\ArtifactFilesRepository;
  * ArtifactFile
  *
  * @ORM\Table(name="artifact_files")
- * @ORM\Entity(repositoryClass="ArtifactFilesRepository")
+ * @ORM\Entity(repositoryClass="McvAdminBundle\Repository\ArtifactFilesRepository")
  */
 class ArtifactFiles
 {
@@ -31,10 +32,11 @@ class ArtifactFiles
      */
     private $filename;
 
+ 
     /**
      * @var string
      *
-     * @ORM\Column(name="filepath", type="string", length=255)
+     * @ORM\Column(name="filepath", type="string", length=200)
      */
     private $filepath;
 
@@ -65,13 +67,26 @@ class ArtifactFiles
      * @ORM\Column(name="file_copyrights", type="string", length=255, nullable=true)
      */
     private $fileCopyrights;
-
+    
     /**
      * Many Files have One Inventory Number.
-     * @ManyToOne(targetEntity="Artifact", inversedBy="files")
-     * @JoinColumn(name="artifact_id", referencedColumnName="id")
+     * @ManyToOne(targetEntity="Artifact", inversedBy="artifactArray")
+     * @JoinColumn(name="indirect_files_artifact")
      */
-    private $artifact_number;
+    private $filesArray;
+    
+   
+   public function getFilesArray() {
+        return $this->filesArray;
+    }
+
+    public function setFilesArray(Artifact $filesArray) {
+       $filesArray->getInventoryNumber($this);
+        if (!$this->filesArray->contains($filesArray)) {
+            $this->filesArray->add($filesArray);
+        }
+        $this->filesArray = $filesArray;
+    }
     /**
      * Get id
      *
@@ -224,6 +239,10 @@ class ArtifactFiles
     public function getFileCopyrights()
     {
         return $this->fileCopyrights;
+    }
+    
+    public function __construct() {
+        $this->filesArray = new ArrayCollection();;
     }
 }
 

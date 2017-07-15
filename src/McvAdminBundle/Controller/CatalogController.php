@@ -20,24 +20,6 @@ class CatalogController extends Controller
         return $this->render('McvAdminBundle:catalog:index.catalog.html.twig');
     }
     
-    /**
-     * 
-     * @param type $name
-     * @Route("/catalog/add", name="add-catalog")
-     */
-    public function addCatalog(){
-        //TODO: Formularz dodawania nowego Catalogu
-    }
-    /**
-     * 
-     * @param array $array of inventory_numbers saved to catalog
-     * @Route("/catalog/fill/{array}")
-     */
-    public function fillCatalog($array){
-        
-    }
-    
-    
      /**
      * @Route("/collection-finder", name="collection-finder")
      */

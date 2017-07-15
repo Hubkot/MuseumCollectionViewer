@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Artifactdescriptions list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Artifact_id</th>
+                <th>Title</th>
+                <th>Story</th>
+                <th>Detail</th>
+                <th>Technique</th>
+                <th>Material</th>
+                <th>Author</th>
+                <th>Workshop</th>
+                <th>Publisher</th>
+                <th>Author_nots</th>
+                <th>Copyrights</th>
+                <th>Financed</th>
+{#                <th>Createdat</th>#}
+                <th>Createdat_nots</th>
+                <th>Height</th>
+                <th>Width</th>
+                <th>Depth</th>
+                <th>Weight</th>
+                <th>Measurement_nots</th>
+                <th>Buy_cost</th>
+                <th>Current_value</th>
+                <th>Modification_history</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for artifactDescription in artifactDescriptions %}
+            <tr>
+                <td><a href="{{ path('artifact-description_show', { 'id': artifactDescription.id }) }}">{{ artifactDescription.id }}</a></td>
+                <td>{{ artifactDescription.artifactid }}</td>
+                <td>{{ artifactDescription.title }}</td>
+                <td>{{ artifactDescription.story }}</td>
+                <td>{{ artifactDescription.detail }}</td>
+                <td>{{ artifactDescription.technique }}</td>
+                <td>{{ artifactDescription.material }}</td>
+                <td>{{ artifactDescription.author }}</td>
+                <td>{{ artifactDescription.workshop }}</td>
+                <td>{{ artifactDescription.publisher }}</td>
+                <td>{{ artifactDescription.authornots }}</td>
+                <td>{{ artifactDescription.copyrights }}</td>
+                <td>{{ artifactDescription.financed }}</td>
+{#                <td>{{ artifactDescription.createdAt }}</td>#}
+                <td>{{ artifactDescription.createdAtnots }}</td>
+                <td>{{ artifactDescription.height }}</td>
+                <td>{{ artifactDescription.width }}</td>
+                <td>{{ artifactDescription.depth }}</td>
+                <td>{{ artifactDescription.weight }}</td>
+                <td>{{ artifactDescription.measurementnots }}</td>
+                <td>{{ artifactDescription.buycost }}</td>
+                <td>{{ artifactDescription.currentvalue }}</td>
+                <td>{{ artifactDescription.modificationhistory }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('artifact-description_show', { 'id': artifactDescription.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('artifact-description_edit', { 'id': artifactDescription.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('artifact-description_new') }}">Create a new artifactDescription</a>
+        </li>
+    </ul>
+{% endblock %}
