@@ -9,10 +9,10 @@ use Symfony\Component\HttpFoundation\Response;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/test")
+     * @Route("/")
      */
     public function indexAction()
     {
-        return new Response('<html><body><p>Hellow my test bundle</p></body></html>');
+           return $this->render('McvBundle:mcv:artifact/basic.html.twig');
     }
 }

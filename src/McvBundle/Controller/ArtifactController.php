@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 class ArtifactController extends Controller{
     /**
      * 
-     * @Route("/", name="artifact_index")
+     * @Route("/art", name="artifact_index")
      */
     public function indexAction(){
         return $this->render('McvBundle:mcv:artifact/basic.html.twig');

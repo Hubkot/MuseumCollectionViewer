@@ -13,7 +13,7 @@ class ArtifactType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('inventoryNumber')->add('collectionArray');
+        $builder->add('inventoryNumber');
     }
     
     /**

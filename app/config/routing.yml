@@ -2,10 +2,6 @@ mcv_admin_artifact_files:
     resource: "@McvAdminBundle/Controller/ArtifactFilesController.php"
     type:     annotation
 
-mcv_admin_artifact_files:
-    resource: "@McvAdminBundle/Controller/ArtifactFilesController.php"
-    type:     annotation
-
 mcv_admin_artifact_type:
     resource: "@McvAdminBundle/Controller/ArtifactTypeController.php"
     type:     annotation
