@@ -9,8 +9,8 @@ services:
         #Tu przygotujemy nasze parametry usługi
         #arguments:  ['%mcv.imagehandler.transport%'] 
     mcv.hellower:
-        class:     %mcv.hellower.class%
-        arguments: [%mcv.hellower.greeting%]
+        class:     "%mcv.hellower.class%"
+        arguments: ["%mcv.hellower.greeting%"]
 
 #    service_name:
 #        class: AppBundle\Directory\ClassName

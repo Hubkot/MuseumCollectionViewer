@@ -13,5 +13,5 @@ assetic:
             inputs:
                 - '@McvAdminBundle/Resources/public/admin.css'
 parameters:
-   shared_dir: %kernel.root_dir%/../web/shared         
-   upload_dir: %kernel.root_dir%/../web/upload         
+   shared_dir: "%kernel.root_dir%/../web/shared"
+   upload_dir: "%kernel.root_dir%/../web/upload"       
