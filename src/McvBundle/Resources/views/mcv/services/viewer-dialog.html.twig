@@ -1,0 +1,38 @@
+<section class="collection">
+            <div class="parent"style="background-color: black;">
+                <div class="panzoom">
+                    <!-- TODO: wykorzystac widok do generowania przeglądarki-->
+                    <img src="http://dziedzictwo.pomorze.pl/datebase/amber/MHMG-B-556-7093.jpg" width="700" height="700">
+                </div>
+            </div>
+            <div class="buttons">
+                <button class="zoom-in">Powiększ</button>
+                <button class="zoom-out">Pomniejsz</button>
+                <input type="range" class="zoom-range">
+                <button class="reset">Dopasuj do okna</button>
+            </div>
+</section>
+
+    <script>
+        (function () {
+            var $section = $('.collection');
+            console.log($section);
+            $section.find('.panzoom').panzoom({
+                $zoomIn: $section.find(".zoom-in"),
+                $zoomOut: $section.find(".zoom-out"),
+                $zoomRange: $section.find(".zoom-range"),
+                $reset: $section.find(".reset"),
+                panOnlyWhenZoomed: false,
+                minScale: 1
+            });
+            $section.find('.panzoom').parent().on('mousewheel.focal', function (e) {
+                e.preventDefault();
+                var delta = e.delta || e.originalEvent.wheelDelta;
+                var zoomOut = delta ? delta < 0 : e.originalEvent.deltaY > 0;
+                $section.find('.panzoom').panzoom('zoom', zoomOut, {
+                    animate: false,
+                    focal: e
+                });
+            });
+        })();
+    </script>

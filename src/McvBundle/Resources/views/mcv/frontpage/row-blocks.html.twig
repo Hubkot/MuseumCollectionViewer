@@ -2,7 +2,21 @@
     <div class="col-md-4">
         <h2>Prezentowanie</h2>
         <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn btn-default" href="{{path('artifact_index')}}" role="button">Szczegóły &raquo;</a></p>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+            Prezentacja zbioru
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document" style="width: 80%;height: 70%;">
+                <div class=" modal-content">
+                    <button type="button" class="btn btn-default" style="z-index:1;position: absolute;top: 10px;right:10px;" data-dismiss="modal">Close</button>
+                    {%include 'McvBundle:mcv:services/viewer-dialog.html.twig'%}
+                </div>
+            </div>
+        </div>
+
     </div>
     <div class="col-md-4">
         <h2>Zarządzanie</h2>
@@ -15,3 +29,5 @@
         <p><a class="btn btn-default" href="#" role="button">Szczegóły&raquo;</a></p>
     </div>
 </div>
+
+
