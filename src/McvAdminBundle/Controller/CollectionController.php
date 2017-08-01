@@ -26,7 +26,7 @@ class CollectionController extends Controller
 
         $collections = $em->getRepository('McvAdminBundle:Collection')->findAll();
 
-        return $this->render('collection/index.html.twig', array(
+        return $this->render('McvAdminBundle:collection:index.html.twig', array(
             'collections' => $collections,
         ));
     }
@@ -51,7 +51,7 @@ class CollectionController extends Controller
             return $this->redirectToRoute('collection_show', array('id' => $collection->getId()));
         }
 
-        return $this->render('collection/new.html.twig', array(
+        return $this->render('McvAdminBundle:collection:new.html.twig', array(
             'collection' => $collection,
             'form' => $form->createView(),
         ));
@@ -67,7 +67,7 @@ class CollectionController extends Controller
     {
         $deleteForm = $this->createDeleteForm($collection);
 
-        return $this->render('collection/show.html.twig', array(
+        return $this->render('McvAdminBundle:collection:show.html.twig', array(
             'collection' => $collection,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -91,7 +91,7 @@ class CollectionController extends Controller
             return $this->redirectToRoute('collection_edit', array('id' => $collection->getId()));
         }
 
-        return $this->render('collection/edit.html.twig', array(
+        return $this->render('McvAdminBundle:collection:edit.html.twig', array(
             'collection' => $collection,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

@@ -28,7 +28,7 @@ class ArtifactFilesController extends Controller
 
         $artifactFiles = $em->getRepository('McvAdminBundle:ArtifactFiles')->findAll();
 
-        return $this->render('artifactfiles/index.html.twig', array(
+        return $this->render('McvAdminBundle:artifactfiles:index.html.twig', array(
             'artifactFiles' => $artifactFiles,
         ));
     }
@@ -53,7 +53,7 @@ class ArtifactFilesController extends Controller
             return $this->redirectToRoute('artifact-files_show', array('id' => $artifactFile->getId()));
         }
 
-        return $this->render('artifactfiles/new.html.twig', array(
+        return $this->render('McvAdminBundle:artifactfiles:new.html.twig', array(
             'artifactFile' => $artifactFile,
             'form' => $form->createView(),
         ));
@@ -69,7 +69,7 @@ class ArtifactFilesController extends Controller
     {
         $deleteForm = $this->createDeleteForm($artifactFile);
 
-        return $this->render('artifactfiles/show.html.twig', array(
+        return $this->render('McvAdminBundle:artifactfiles:show.html.twig', array(
             'artifactFile' => $artifactFile,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -93,7 +93,7 @@ class ArtifactFilesController extends Controller
             return $this->redirectToRoute('artifact-files_edit', array('id' => $artifactFile->getId()));
         }
 
-        return $this->render('artifactfiles/edit.html.twig', array(
+        return $this->render('McvAdminBundle:artifactfiles:edit.html.twig', array(
             'artifactFile' => $artifactFile,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

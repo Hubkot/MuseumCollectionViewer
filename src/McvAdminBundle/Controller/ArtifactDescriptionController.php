@@ -26,7 +26,7 @@ class ArtifactDescriptionController extends Controller
 
         $artifactDescriptions = $em->getRepository('McvAdminBundle:ArtifactDescription')->findAll();
 
-        return $this->render('artifactdescription/index.html.twig', array(
+        return $this->render('McvAdminBundle:artifactdescription:index.html.twig', array(
             'artifactDescriptions' => $artifactDescriptions,
         ));
     }
@@ -51,7 +51,7 @@ class ArtifactDescriptionController extends Controller
             return $this->redirectToRoute('artifact-description_show', array('id' => $artifactDescription->getId()));
         }
 
-        return $this->render('artifactdescription/new.html.twig', array(
+        return $this->render('McvAdminBundle:artifactdescription:new.html.twig', array(
             'artifactDescription' => $artifactDescription,
             'form' => $form->createView(),
         ));
@@ -67,7 +67,7 @@ class ArtifactDescriptionController extends Controller
     {
         $deleteForm = $this->createDeleteForm($artifactDescription);
 
-        return $this->render('artifactdescription/show.html.twig', array(
+        return $this->render('McvAdminBundle:artifactdescription:show.html.twig', array(
             'artifactDescription' => $artifactDescription,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -91,7 +91,7 @@ class ArtifactDescriptionController extends Controller
             return $this->redirectToRoute('artifact-description_edit', array('id' => $artifactDescription->getId()));
         }
 
-        return $this->render('artifactdescription/edit.html.twig', array(
+        return $this->render('McvAdminBundle:artifactdescription:edit.html.twig', array(
             'artifactDescription' => $artifactDescription,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

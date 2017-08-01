@@ -10,10 +10,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 
-class CatalogController extends Controller
+class CatalogOldController extends Controller
 {
      /**
-     * @Route("/catalog", name="catalog_index")
+     * @Route("/catalog", name="catalog_index_old")
      */
     public function indexAction()
     {
@@ -21,7 +21,7 @@ class CatalogController extends Controller
     }
     
      /**
-     * @Route("/collection-finder", name="collection-finder")
+     * @Route("/collection-finder-old", name="collection-finder-old")
      */
     public function finderAction(Request $request)
     {
@@ -40,7 +40,7 @@ class CatalogController extends Controller
     }
     
     /**
-     * @Route("catalog/relation", name="relation")
+     * @Route("catalog/relation/old", name="relation")
      */
     public function addArtifactsToCollecitonAction(){
         $em = $this->getDoctrine()->getManager();
@@ -63,7 +63,7 @@ class CatalogController extends Controller
         return $this->render('McvAdminBundle:catalog:index.catalog.html.twig');
     }
     /**
-     * @Route("catalog/view-collection/{slug}",defaults={"slug: 1"}, name="view-colleciton")
+     * @Route("catalog/view-collection-old/{slug}",defaults={"slug: 1"}, name="view-colleciton")
      * @return type
      */
     public function viewCollectionAction($slug){

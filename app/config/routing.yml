@@ -1,3 +1,7 @@
+mcv_admin_page_layout:
+    resource: "@McvAdminBundle/Controller/PageLayoutController.php"
+    type:     annotation
+
 mcv_admin_artifact_files:
     resource: "@McvAdminBundle/Controller/ArtifactFilesController.php"
     type:     annotation

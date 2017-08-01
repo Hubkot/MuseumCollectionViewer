@@ -1,4 +1,20 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Wiksa{% endblock %}</title>
+        {% block stylesheets %}
+               <link rel="stylesheet" href="{{asset('assetic/twbs_css.css')}}" type="text/css">
+        {% endblock %}
+        
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <script src="{{asset('assetic/jquery_js.js')}}"></script>
+        <script src="{{asset('assetic/panzoom_js.js')}}"></script>
+        <script src="{{asset('assetic/bootstrap_js.js')}}"></script>
+        <script src="{{asset('assetic/jquery_mousewheel_js.js')}}"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -7,7 +23,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="{{path('artifact_index')}}">Museum Collection Viewer</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <form class="navbar-form navbar-right">
@@ -17,7 +33,7 @@
             <div class="form-group">
               <input type="password" placeholder="Password" class="form-control">
             </div>
-            <button type="submit" class="btn btn-success">Sign in</button>
+            <button type="submit" class="btn btn-success">Zaloguj się</button>
           </form>
         </div><!--/.navbar-collapse -->
       </div>
@@ -26,37 +42,30 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
-        <h1>Hello, world!</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+        <h1>Witaj użytkowniku!</h1>
+        <p>Museum Collection Viewer umożliwia zarzadzanie i prezentację zbiorów online dla jednostek kultury takich jak muzea, jednostki o profilu archeologicznym, uniwersytetów itp. Projekt dostępny jest na licencji open source [LICENCJA].</p>
+        <p>Aktualna wersja: 0.2.</p>
+        <p><a class="btn btn-primary btn-lg" href="https://github.com/Hubkot/MuseumCollectionViewer/" role="button">Pobierz z Githuba</a></p>
       </div>
     </div>
 
-    <div class="container">
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-       </div>
-        <div class="col-md-4">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div>
-      </div>
+   
 
-      <hr>
+        {% block body %}          
+        {% endblock %}
+           <hr>
 
-      <footer>
-        <p>&copy; 2016 Company, Inc.</p>
+  
+    
+    <!-- Footer -->
+    <div class="jumbotron">
+          <div class="container-footer">
+            <h1>Stopka Redakcyjna</h1>
+          </div>
+            <footer>
+        <p>&copy; 2017 Hubkos. Jumbotron Bootstrap Theme. </p>
       </footer>
     </div> <!-- /container -->
-    
-    
+       
+    </body>
+</html>
