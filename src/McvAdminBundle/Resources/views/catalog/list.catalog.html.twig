@@ -4,5 +4,11 @@
     {{ form_start(scan_button) }}
     {{ form_widget(scan_button) }}
     {{ form_end(scan_button) }}
+    
+{% for flash_message in app.session.flashBag.get('success') %}
+            <div class="flash_notice">
+                {{flash_message}}
+            </div>
+{% endfor %}
 
 {% endblock %}

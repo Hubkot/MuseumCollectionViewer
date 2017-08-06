@@ -87,5 +87,7 @@ class Artifact
         $this->files = new ArrayCollection();
         $this->collectionArray = new ArrayCollection();
     }
+    
+    
    
 }

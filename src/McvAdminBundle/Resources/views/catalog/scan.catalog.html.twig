@@ -1,20 +1,29 @@
 {% extends "McvAdminBundle:layout:admin.list.html.twig"%}
 
 {% block body %}
+    
+    {% for flash_message in app.session.flashBag.get('success') %}
+                <div class="flash_notice">
+                    {{flash_message}}
+                </div>
+    {% endfor %}
+    
     {{ form_start(scan_button) }}
     {{ form_widget(scan_button) }}
     {{ form_end(scan_button) }}
     
-    {% if findFiles.getPreparedFiles|length > 0 %}
-        {{dump(findFiles.getPreparedFiles)}}
+    {% if findFiles|length > 0 %}
+        {{dump(findFiles)}}
         <table class="table table-striped">
             <tr>
-                <td><input type="checkbox" id="checkAll"/></td>
+                <td>
+                    <input type="checkbox" id="checkAll"/>
+                </td>
                 <td>Nazwa pliku</td>
                 <td>Importuj z puli</td>
                 <td>Usuń z puli</td>
             </tr>
-        {% for  f in findFiles.getPreparedFiles %}
+        {% for  f in findFiles %}
             <tr>
                 <td>
                     <input type="checkbox" class="checkbox">
@@ -23,7 +32,8 @@
                      Plik {{f.inventory_number}}_{{f.photo_number}}_{{f.category_symbol}}.{{f.file_extension}} gotowy do wprowadzenia do bazy danych. <br />
                 </td>
                 <td>
-                    <a href="{{}}"type="button" class="btn btn-success">Importuj</a>
+                    <a href=""type="button" class="btn btn-success">Importuj</a>
+                    {{include('McvAdminBundle:actions:_import_form.html.twig',{file_id: f.inventory_number},with_context = false) }}
                 </td>
                 <td>
                     <button type="button" class="btn btn-danger">Usuń</button>
