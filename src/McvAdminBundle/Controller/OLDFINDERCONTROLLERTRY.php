@@ -47,7 +47,6 @@ class FinderController extends Controller
         //Przycisk importu wszystkich plików
         if($scan_button->isSubmitted()){
             $findFiles = new CollectionFinder($this->getParameter('upload_dir'));
-            //TODO Poprawić aby do sesji zapisywana byla tablica asocjacyjna a nie tradycyjna
             $sesja->set('Wyszukane', $findFiles->findAll());
             $importBag = $sesja->get('Wyszukane');
             return $this->render('McvAdminBundle:catalog:scan.catalog.html.twig', ['findFiles' => $importBag,'scan_button'=>$scan_button->createView()]);
@@ -75,55 +74,34 @@ class FinderController extends Controller
         
         $bag = $request->getSession()->get('Wyszukane');
         $em = $this->getDoctrine()->getManager();
-        if($bag){
-            foreach ($bag as $i){
-
-                $artifact = $em->getRepository('McvAdminBundle:Artifact')->findOneBy(array('inventoryNumber'=>$i['inventory_number']));
-                $artifactObject = $em->find('McvAdminBundle:Artifact', $artifact);
-
-                if($artifact){
-                     echo 'Znalazłem w bazie <br />';
-                     try {
-                         //TODO install composer FILESYSTEM COMPONENT TO MOVE FILE FORM IMPORT FOLDER
-                        $object = $this->saveFileToDb($i, $artifactObject);
-                        $em->persist($object);
-                        
-                     } catch (Exception $ex) {
-                         
-                     }
-                     
-                     $em->flush();
-                 }
-                if (!$artifact) {
-                     echo 'A tego nie ma <br />';
-                     echo 'Podejmuję próbę dodania <br />';
-                     $artifactModel = new Artifact(); 
-                     $artifactModel->setInventoryNumber($i['inventory_number']);
-                     $em->persist($artifactModel);
-                echo 'Probuje flushnac <br />';
-                $em->flush();
-                echo 'Flushnieto do bazy';
-                     echo 'Persist nowego obiektu wykonany <br />';
-                }
-
-                $this->addFlash('success','Zaimportowano plik: ');    
-            }
-            $request->getSession()->clear();
-            }
+        foreach ($bag as $i){
+            $artifactModel = new Artifact();
+          
+            $artifact = $em->getRepository('McvAdminBundle:Artifact')->findBy(array('inventoryNumber'=>$i['inventory_number']));
+             
+        if($artifact){
+             echo 'Znalazłem w bazie';
+             $artifactFile = new ArtifactFiles();
+             $artifactFile->setFilename($i['inventory_number']
+                                          .$i['photo_number']
+                                          .$i['category_symbol']
+                                          .'.'.$i['file_extension']);
+             $artifactFile->setCategorySymbol($i['category_symbol']);
+             $artifactFile->setFilepath('zgrane');
+             $artifactFile->setStatus(1);
+             $artifactFile->setPhotoNumber($i['photo_number']);
+             $artifactFile->setFilesArray($artifactModel->getInventoryNumber($i['inventory_number']));
+             $em->persist($artifactFile);
+         }
+        if (!$artifact) {
+             echo 'A tego nie ma';
+        }
+            
+        $this->addFlash('success','Zaimportowano plik: ');    
+        }
+        $em->flush();
         return $this->render('McvAdminBundle:catalog:imported.files.html.twig');
         
-    }
-    
-    public function saveFileToDb($array, Artifact $artifact){
-        $fileModel = new ArtifactFiles();
-        $fileModel->setCategorySymbol($array['category_symbol']);
-        $fileModel->setFilename($array['file_name']);
-        $fileModel->setFilepath('/some_path');
-        $fileModel->setPhotoNumber($array['photo_number']);
-        $fileModel->setStatus(1);
-        $fileModel->setFileCopyrights('SomeCopy');
-        $fileModel->setFilesArray($artifact);
-        return $fileModel;
     }
  
     

@@ -75,18 +75,10 @@ class ArtifactFiles
      */
     private $filesArray;
     
+    public function __construct() {
+        $this->filesArray = new ArrayCollection();
+    }
    
-   public function getFilesArray() {
-        return $this->filesArray;
-    }
-
-    public function setFilesArray(Artifact $filesArray) {
-       $filesArray->getInventoryNumber($this);
-        if (!$this->filesArray->contains($filesArray)) {
-            $this->filesArray->add($filesArray);
-        }
-        $this->filesArray = $filesArray;
-    }
     /**
      * Get id
      *
@@ -241,8 +233,19 @@ class ArtifactFiles
         return $this->fileCopyrights;
     }
     
-    public function __construct() {
-        $this->filesArray = new ArrayCollection();;
+    public function getFilesArray() {
+        return $this->filesArray;
     }
+
+    public function setFilesArray(Artifact $filesArray) {
+       $filesArray->getInventoryNumber($this);
+        if (!$this->filesArray->contains($filesArray)) {
+            $this->filesArray->add($filesArray);
+        }
+        $this->filesArray = $filesArray;
+        return $this;
+    }
+    
+ 
 }
 

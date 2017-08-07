@@ -35,8 +35,8 @@ class KaperFileValidation {
         'inventory_number' => $exploded_name[0],
         'photo_number'     => $exploded_name[1],
         'category_symbol'  => $exploded_name[2],
-        'file_extension'   => $exploded_name[3]
-        ];
+        'file_extension'   => $exploded_name[3],
+        'file_name'        => $exploded_name[0].'_'.$exploded_name[1].'_'.$exploded_name[2].'.'.$exploded_name[3]];
         
         return $associativeNameArray;
     }

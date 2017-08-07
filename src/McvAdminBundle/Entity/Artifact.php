@@ -32,6 +32,18 @@ class Artifact
     private $inventoryNumber;
 
     /**
+     * Many Artifacts belongs to Many Collections.
+     * @ManyToMany(targetEntity="Collection", mappedBy="artifactArray")
+     */
+    private $collectionArray;
+    
+     /**
+     * Many Artifacts belongs to Many Collections.
+     * @ManyToMany(targetEntity="Collection", mappedBy="filesArray")
+     */
+    private $artifactArray;
+    
+    /**
      * Get id
      *
      * @return int
@@ -39,6 +51,12 @@ class Artifact
     public function getId()
     {
         return $this->id;
+    }
+    
+    public function setId($id)
+    {
+        $this->$id = $id;
+        return $this;
     }
 
     /**
@@ -65,17 +83,7 @@ class Artifact
         return $this->inventoryNumber;
     }
   // ...
-    /**
-     * Many Artifacts belongs to Many Collections.
-     * @ManyToMany(targetEntity="Collection", mappedBy="artifactArray")
-     */
-    private $collectionArray;
-    
-     /**
-     * Many Artifacts belongs to Many Collections.
-     * @ManyToMany(targetEntity="Collection", mappedBy="filesArray")
-     */
-    private $artifactArray;
+  
     
     public function __toString()
     {
@@ -84,7 +92,7 @@ class Artifact
     
     public function __construct(){
         
-        $this->files = new ArrayCollection();
+        $this->artifactArray = new ArrayCollection();
         $this->collectionArray = new ArrayCollection();
     }
     
