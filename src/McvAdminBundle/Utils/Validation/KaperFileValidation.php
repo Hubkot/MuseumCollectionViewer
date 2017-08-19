@@ -13,8 +13,13 @@ use Symfony\Component\HttpFoundation\Session\Session;
 class KaperFileValidation {
     
     private $filename;
+    private $filepath;
     
-    public function __construct($filename){ $this->filename = $filename; }
+    public function __construct($filename, $filepath)
+    {
+        $this->filename = $filename; 
+        $this->filepath = $filepath;
+    }
 
     public function validateFileName(): bool
     {
@@ -32,11 +37,13 @@ class KaperFileValidation {
     {
         $exploded_name = preg_split('/[_.]/', $this->filename);
         $associativeNameArray = [
-        'inventory_number' => $exploded_name[0],
-        'photo_number'     => $exploded_name[1],
-        'category_symbol'  => $exploded_name[2],
-        'file_extension'   => $exploded_name[3],
-        'file_name'        => $exploded_name[0].'_'.$exploded_name[1].'_'.$exploded_name[2].'.'.$exploded_name[3]];
+            'inventory_number' => strtolower($exploded_name[0]),
+            'photo_number'     => strtolower($exploded_name[1]),
+            'category_symbol'  => strtolower($exploded_name[2]),
+            'file_extension'   => strtolower($exploded_name[3]),
+            'file_name'        => strtolower($exploded_name[0].'_'.$exploded_name[1].'_'.$exploded_name[2].'.'.$exploded_name[3]),
+            'filepath'         => strtolower($this->filepath) 
+        ];
         
         return $associativeNameArray;
     }

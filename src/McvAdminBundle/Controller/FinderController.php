@@ -71,49 +71,67 @@ class FinderController extends Controller
      * @param Request $request
      * @return RedirectResponse
      */
-    public function importAll(Request $request){
+    public function importAllAction(Request $request){
         
         $bag = $request->getSession()->get('Wyszukane');
-        $em = $this->getDoctrine()->getManager();
+        
+        
         if($bag){
-            foreach ($bag as $i){
-
-                $artifact = $em->getRepository('McvAdminBundle:Artifact')->findOneBy(array('inventoryNumber'=>$i['inventory_number']));
-                $artifactObject = $em->find('McvAdminBundle:Artifact', $artifact);
-
-                if($artifact){
-                     echo 'Znalazłem w bazie <br />';
-                     try {
-                         //TODO install composer FILESYSTEM COMPONENT TO MOVE FILE FORM IMPORT FOLDER
-                        $object = $this->saveFileToDb($i, $artifactObject);
-                        $em->persist($object);
-                        
-                     } catch (Exception $ex) {
-                         
-                     }
-                     
-                     $em->flush();
-                 }
-                if (!$artifact) {
-                     echo 'A tego nie ma <br />';
-                     echo 'Podejmuję próbę dodania <br />';
-                     $artifactModel = new Artifact(); 
-                     $artifactModel->setInventoryNumber($i['inventory_number']);
-                     $em->persist($artifactModel);
-                echo 'Probuje flushnac <br />';
-                $em->flush();
-                echo 'Flushnieto do bazy';
-                     echo 'Persist nowego obiektu wykonany <br />';
-                }
-
-                $this->addFlash('success','Zaimportowano plik: ');    
-            }
+            $this->importFilesFromBag($bag);
             $request->getSession()->clear();
             }
         return $this->render('McvAdminBundle:catalog:imported.files.html.twig');
         
     }
+       public function importFilesFromBag($bag){
+        $em = $this->getDoctrine()->getManager();
+        foreach ($bag as $i){
+            echo'Próbuję otworzyć worek <br />';
+            $findedArtifact = $em->getRepository('McvAdminBundle:Artifact')->findOneBy(array('inventoryNumber'=>$i['inventory_number']));
+            if ($findedArtifact){
+                echo 'Probuje zapisac plik do bazy';
+                if($this->checkIfFileExistInDb($em, $i['file_name'])){
+                    echo 'Ten plik jest już w bazie <br />';
+                }else{
+                    echo 'Tego jeszcze nie ma wiec dodaje <br />';
+                    $fileModel = $this->saveFileToDb($i, $findedArtifact);
+                    $em->persist($fileModel);
+                    $em->flush();    
+                }
+                
+            }
+            else{
+                echo 'Nie znalazlem numeru inv : to tworzę <br />';
+                $this->createArtifact($em, $i['inventory_number']);
+                echo 'Stworzylem teraz znow go szukam <br />';
+                $findedArtifact = $em->getRepository('McvAdminBundle:Artifact')->findOneBy(array('inventoryNumber'=>$i['inventory_number']));
+                echo $findedArtifact ? 'znalazlem <br />' : 'nadal go nie znalazlem <br />';
+                $artifactObject = $em->find('McvAdminBundle:Artifact', $findedArtifact);
+                $fileModel = $this->saveFileToDb($i, $artifactObject);
+                $em->persist($fileModel);
+                $em->flush();
+            }
+        }
+    }
+     /**
+     * Helper Function (if $artifact inventory_number is not in Db)
+     * @param type $array
+     * @param Artifact $artifact
+     * @return ArtifactFiles
+     */
+    public function createArtifact($em, $inventoryNumber){
+        $artifact = new Artifact();
+        $artifact->setInventoryNumber($inventoryNumber);
+        $em->persist($artifact);
+        $em->flush();
+    }
     
+    /**
+     * Helper Function
+     * @param type $array
+     * @param Artifact $artifact
+     * @return ArtifactFiles
+     */
     public function saveFileToDb($array, Artifact $artifact){
         $fileModel = new ArtifactFiles();
         $fileModel->setCategorySymbol($array['category_symbol']);
@@ -125,6 +143,14 @@ class FinderController extends Controller
         $fileModel->setFilesArray($artifact);
         return $fileModel;
     }
+    
+    public function checkIfFileExistInDb($em, $filename)
+    {
+        $findedFile = $em->getRepository('McvAdminBundle:ArtifactFiles')->findOneBy(array('filename'=>$filename));
+        return $findedFile ? true : false;
+    }
+  
+    
  
     
 }

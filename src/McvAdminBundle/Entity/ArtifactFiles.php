@@ -28,7 +28,7 @@ class ArtifactFiles
     /**
      * @var string
      *
-     * @ORM\Column(name="filename", type="string", length=200)
+     * @ORM\Column(name="filename", type="string", length=200, unique=true)
      */
     private $filename;
 
