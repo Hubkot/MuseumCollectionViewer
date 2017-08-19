@@ -1,0 +1,16 @@
+{% extends "McvAdminBundle:layout:admin.layout.html.twig" %}
+
+{% block body %}
+    {% for messages in app.flashes(['warning', 'error','success']) %}
+    {% for flash_message in messages %}
+        <div class="flash_notice">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
+{% endfor %}
+
+    <h2>Index Catalog View</h2>
+
+    Widok helpera.
+
+{% endblock %}

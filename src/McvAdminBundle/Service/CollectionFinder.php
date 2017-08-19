@@ -25,10 +25,11 @@ class CollectionFinder {
     // findAll(Validator $validator)
     public function findAll(){
         $finder = new Finder();    
-        $finder->files()->in(($this->finderPath));
+        $finder->files()->in($this->finderPath);
         foreach ($finder as $path){
+            $path = $this->getPublicPath($path);
             $filename = $this->getFileName($path);
-            $validator = new KaperFileValidation($filename);
+            $validator = new KaperFileValidation($filename, $path);
             if($validator->validateFileName()){array_push($this->preparedFiles, $validator->prepareFileName());};
         }
         return $this->preparedFiles;
@@ -38,8 +39,16 @@ class CollectionFinder {
         $pathExplode = explode('/', $path);
         return $pathExplode[count($pathExplode)-1];
     }
+    
     public function getPreparedFiles(){
         return $this->preparedFiles;
+    }
+    
+    //TODO : Złe odwołanie od ścieżki - muszę doczytać jak prawidłowo odwoływać się do publicznego katalogu
+    public function getPublicPath($path)
+    {
+        $publicPath = explode('/web/', $path);
+        return $publicPath[1];
     }
 }
     
