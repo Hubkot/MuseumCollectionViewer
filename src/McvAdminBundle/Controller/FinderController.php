@@ -78,7 +78,7 @@ class FinderController extends Controller
         
         if($bag){
             $this->importFilesFromBag($bag);
-//            $request->getSession()->clear();
+            $request->getSession()->clear();
             }
         return $this->render('McvAdminBundle:catalog:imported.files.html.twig');
         
@@ -90,9 +90,15 @@ class FinderController extends Controller
             $findedArtifact = $em->getRepository('McvAdminBundle:Artifact')->findOneBy(array('inventoryNumber'=>$i['inventory_number']));
             if ($findedArtifact){
                 echo 'Probuje zapisac plik do bazy';
-                $fileModel = $this->saveFileToDb($i, $findedArtifact);
-                $em->persist($fileModel);
-                $em->flush();
+                if($this->checkIfFileExistInDb($em, $i['file_name'])){
+                    echo 'Ten plik jest już w bazie <br />';
+                }else{
+                    echo 'Tego jeszcze nie ma wiec dodaje <br />';
+                    $fileModel = $this->saveFileToDb($i, $findedArtifact);
+                    $em->persist($fileModel);
+                    $em->flush();    
+                }
+                
             }
             else{
                 echo 'Nie znalazlem numeru inv : to tworzę <br />';
@@ -143,6 +149,7 @@ class FinderController extends Controller
         $findedFile = $em->getRepository('McvAdminBundle:ArtifactFiles')->findOneBy(array('filename'=>$filename));
         return $findedFile ? true : false;
     }
+  
     
  
     
