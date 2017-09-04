@@ -25,8 +25,17 @@ class FilesystemOrganizer {
         } catch (Exception $e){
             throw new Exception('Nie udało sie przenieść pliku');
         }
-       
     }
+    
+    public static function createDirs($folderName){
+        $fs = new Filesystem();
+        try{
+            $fs->mkdir($folderName);
+        }catch (Exception $e){
+            throw new Exception('Nie udało sie przenieść pliku');
+        }
+    }
+    
 }
  
 

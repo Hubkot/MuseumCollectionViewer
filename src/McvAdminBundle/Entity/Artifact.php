@@ -38,10 +38,10 @@ class Artifact
     private $collectionArray;
     
      /**
-     * Many Artifacts belongs to Many Collections.
+     * Many Artifact could have many files
      * @ManyToMany(targetEntity="Collection", mappedBy="filesArray")
      */
-    private $artifactArray;
+    private $artifactFiles;
     
     /**
      * Get id
@@ -92,7 +92,7 @@ class Artifact
     
     public function __construct(){
         
-        $this->artifactArray = new ArrayCollection();
+        $this->artifactFiles = new ArrayCollection();
         $this->collectionArray = new ArrayCollection();
     }
     

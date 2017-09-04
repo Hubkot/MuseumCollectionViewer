@@ -1,13 +1,15 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Witaj!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}Jestem poczwarą bazową z McvBundle{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
-</html>
+{% extends 'McvBundle:mcv:layout.html.twig' %}
+
+{% block body %}
+    <div class="container">
+    <!--Menu content blocks -->
+     {% include 'McvBundle:mcv:frontpage/row-blocks.html.twig'%}
+     
+    <!-- Content Jumbotron block -->
+     {% include 'McvBundle:mcv:frontpage/content-jumbo.html.twig'%}
+
+     <!-- Front Article block -->
+     {% include 'McvBundle:mcv:frontpage/front-article.html.twig'%}
+    </div>
+
+{% endblock %}

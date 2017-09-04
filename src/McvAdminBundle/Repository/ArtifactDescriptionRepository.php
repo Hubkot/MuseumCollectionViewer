@@ -10,4 +10,5 @@ namespace McvAdminBundle\Repository;
  */
 class ArtifactDescriptionRepository extends \Doctrine\ORM\EntityRepository
 {
+ 
 }
