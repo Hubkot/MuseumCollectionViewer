@@ -1,4 +1,4 @@
 
 # This is information file about McvAdminBundle
-# Bundle for client
+# Bundle for admin
 # This Bundle was created to separate sensitive informations, commands and actions from client-view. It works with McvBundle system.
