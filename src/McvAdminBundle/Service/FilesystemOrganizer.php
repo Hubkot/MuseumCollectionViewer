@@ -8,18 +8,24 @@
 
 namespace McvAdminBundle\Service;
 
+use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\Filesystem\Filesystem;
 
 class FilesystemOrganizer {
     
-    private $fileinfo;
-    
-    public function __construct(array $fileinfo) {
-        $this->fileinfo = $fileinfo;
+    public function __construct() {
+        
     }
     
-    public function moveToSharedFolder()
+    public static function moveToAnotherPlace($originPath, $targetPath)
     {
+        $fs = new Filesystem();
+        try{
+            $fs->rename($originPath, $targetPath);
+        } catch (Exception $e){
+            throw new Exception('Nie udało sie przenieść pliku');
+        }
+       
     }
 }
  

@@ -5,8 +5,11 @@ namespace McvAdminBundle\Controller;
 use McvAdminBundle\Entity\Artifact;
 use McvAdminBundle\Entity\ArtifactFiles;
 use McvAdminBundle\Service\CollectionFinder;
+use McvAdminBundle\Service\FilesystemOrganizer;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Config\Definition\Exception\Exception;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -72,18 +75,43 @@ class FinderController extends Controller
      * @return RedirectResponse
      */
     public function importAllAction(Request $request){
-        
         $bag = $request->getSession()->get('Wyszukane');
-        
         
         if($bag){
             $this->importFilesFromBag($bag);
             $request->getSession()->clear();
             }
         return $this->render('McvAdminBundle:catalog:imported.files.html.twig');
-        
     }
-       public function importFilesFromBag($bag){
+    /**
+     * @Route("/rename", name="rename_file")
+     */
+    public function renameFileAction(){
+        $fs = new Filesystem();
+        
+        $uploadPath = $this->getParameter('upload_dir');
+        $sharedPath = $this->getParameter('shared_dir');
+        $file = 'nanannananana.jpg';
+        try{
+            FilesystemOrganizer::moveToAnotherPlace(
+                $uploadPath.'/'.$file,
+                $sharedPath.'/'.$file
+                );
+            $this->addFlash('warning', 'Udało się przenieść plik '.$file. ' do folderu udostępnionego');
+        } catch (Exception $e){
+            throw new Exception('Nie dało rady');
+        }
+        
+        return $this->render('McvAdminBundle:catalog:index.catalog.html.twig');
+    }
+    
+    /**
+     * Helper Function
+     * @param type $array
+     * @param Artifact $artifact
+     * @return ArtifactFiles
+     */
+    public function importFilesFromBag($bag){
         $em = $this->getDoctrine()->getManager();
         foreach ($bag as $i){
             echo'Próbuję otworzyć worek <br />';
@@ -111,6 +139,9 @@ class FinderController extends Controller
                 $em->persist($fileModel);
                 $em->flush();
             }
+            FilesystemOrganizer::moveToAnotherPlace(
+                    $i['filepath'],
+                    $this->getParameter('shared_dir').'/'.$i['file_name']);
         }
     }
      /**
@@ -143,12 +174,19 @@ class FinderController extends Controller
         $fileModel->setFilesArray($artifact);
         return $fileModel;
     }
-    
+    /**
+     * Helper Function
+     * @param entityManager $em
+     * @param string $filename
+     * @return bool
+     */
     public function checkIfFileExistInDb($em, $filename)
     {
         $findedFile = $em->getRepository('McvAdminBundle:ArtifactFiles')->findOneBy(array('filename'=>$filename));
         return $findedFile ? true : false;
     }
+    
+    
   
     
  
