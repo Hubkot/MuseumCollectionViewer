@@ -22,24 +22,78 @@ class ArtifactRepository extends EntityRepository
             return false;
         }
     }
-    public function importNumbersFromFilenames($foundedFilesArray,$entityManager){
-         
-        foreach ($foundedFilesArray as $f){
-           if(!$this->isExist($f['inventory_number'])){
-               $rekord = new Artifact();
-               $rekord->setInventoryNumber($f['inventory_number']);
-               $entityManager->persist($rekord);
-               echo 'Tworzę rekord <br />';
-           }
-           elseif($this->isExist($f['inventory_number'])){
-               echo 'Rekord istnieje. Nie robię nic dalej<br />';
-               }
-          else{
-              echo 'Wykryto błąd aplikacji';
-          }
-         
-        }
-        $entityManager->flush();
-       
+//    public function importNumbersFromFilenames($foundedFilesArray,$entityManager){
+//         
+//        foreach ($foundedFilesArray as $f){
+//           if(!$this->isExist($f['inventory_number'])){
+//               $rekord = new Artifact();
+//               $rekord->setInventoryNumber($f['inventory_number']);
+//               $entityManager->persist($rekord);
+//               echo 'Tworzę rekord <br />';
+//           }
+//           elseif($this->isExist($f['inventory_number'])){
+//               echo 'Rekord istnieje. Nie robię nic dalej<br />';
+//               }
+//          else{
+//              echo 'Wykryto błąd aplikacji';
+//          }
+//         
+//        }
+//        $entityManager->flush();
+//       
+//    }
+    
+    public function findById($id){
+//        $dql = 'SELECT art FROM McvAdminBundle\Entity\Artifact art ORDER BY art.inventoryNumber DESC';
+//        $query = $this->getEntityManager()->createQuery($dql);
+        
+        $qb = $this->createQueryBuilder('art')
+                ->andWhere('art.id = :searched')
+                ->addOrderBy('art.inventoryNumber','DESC')
+                ->setParameter('searched', $id);
+        
+        $query = $qb->getQuery();
+        
+        return $query->execute();
     }
+    public function findLikeInventory($lookFor,$limit = 0){
+//        $dql = 'SELECT art FROM McvAdminBundle\Entity\Artifact art ORDER BY art.inventoryNumber DESC';
+//        $query = $this->getEntityManager()->createQuery($dql);
+        if(!$limit){
+            $qb = $this->createQueryBuilder('art')
+                ->andWhere('art.inventoryNumber LIKE :searched')
+                ->addOrderBy('art.inventoryNumber','DESC')
+                ->setParameter('searched', '%'.$lookFor.'%');
+        
+        $query = $qb->getQuery();
+        }else{
+              $qb = $this->createQueryBuilder('art')
+                ->andWhere('art.inventoryNumber LIKE :searched')
+                ->addOrderBy('art.inventoryNumber','DESC')
+                ->setMaxResults($limit)
+                ->setParameter('searched', '%'.$lookFor.'%');
+              $query = $qb->getQuery();
+        }
+        
+        return $query->execute();
+    }
+    public function findAllDesc(){
+//        $dql = 'SELECT art FROM McvAdminBundle\Entity\Artifact art ORDER BY art.inventoryNumber DESC';
+//        $query = $this->getEntityManager()->createQuery($dql);
+        $id = 23;
+        $qb = $this->createQueryBuilder('d')
+                ->andWhere('aid.id = :search')
+                ->leftJoin('d.collectionArray', 'aid')
+                ->select('aid.name as colTitle, d.inventoryNumber as invNumb, aid.description as descip')
+                ->addOrderBy('d.inventoryNumber','DESC')
+                ->setParameter('search', $id)
+        ;        
+        $query = $qb->getQuery();
+        
+        return $query->execute();
+    }
+    
+        
+    
+    
 }

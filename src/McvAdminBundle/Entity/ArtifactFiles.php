@@ -70,7 +70,7 @@ class ArtifactFiles
     
     /**
      * Many Files have One Inventory Number.
-     * @ManyToOne(targetEntity="Artifact", inversedBy="artifactArray")
+     * @ManyToOne(targetEntity="Artifact", inversedBy="artifactFiles")
      * @JoinColumn(name="indirect_files_artifact")
      */
     private $filesArray;

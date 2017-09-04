@@ -13,6 +13,6 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-           return $this->render('McvBundle:mcv:artifact/basic.html.twig');
+           return $this->render('McvBundle:mcv:base.html.twig');
     }
 }

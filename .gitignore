@@ -19,3 +19,6 @@
 /sup.sh
 /send.sh
 /nbproject/*
+/web/kopiabez/
+/web/upload/*
+/web/shared/*

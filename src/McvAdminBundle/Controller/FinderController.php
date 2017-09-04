@@ -91,13 +91,15 @@ class FinderController extends Controller
         
         $uploadPath = $this->getParameter('upload_dir');
         $sharedPath = $this->getParameter('shared_dir');
-        $file = 'nanannananana.jpg';
+//        $file = 'upload/nanannananana.jpg';
+//        $fs->touch($file);
         try{
-            FilesystemOrganizer::moveToAnotherPlace(
-                $uploadPath.'/'.$file,
-                $sharedPath.'/'.$file
-                );
-            $this->addFlash('warning', 'Udało się przenieść plik '.$file. ' do folderu udostępnionego');
+            FilesystemOrganizer::createDirs('upload/niewiem/mhmg-s/mojefolderki.ps');
+//            FilesystemOrganizer::moveToAnotherPlace(
+//                $uploadPath.'/'.$file,
+//                $sharedPath.'/masda/wea/231/asa/'.$file
+//                );
+//            $this->addFlash('warning', 'Udało się przenieść plik '.$file. ' do folderu udostępnionego');
         } catch (Exception $e){
             throw new Exception('Nie dało rady');
         }
@@ -119,29 +121,29 @@ class FinderController extends Controller
             if ($findedArtifact){
                 echo 'Probuje zapisac plik do bazy';
                 if($this->checkIfFileExistInDb($em, $i['file_name'])){
-                    echo 'Ten plik jest już w bazie <br />';
+//                    echo 'Ten plik jest już w bazie <br />';
                 }else{
-                    echo 'Tego jeszcze nie ma wiec dodaje <br />';
+//                    echo 'Tego jeszcze nie ma wiec dodaje <br />';
                     $fileModel = $this->saveFileToDb($i, $findedArtifact);
                     $em->persist($fileModel);
                     $em->flush();    
                 }
-                
             }
             else{
-                echo 'Nie znalazlem numeru inv : to tworzę <br />';
+//                echo 'Nie znalazlem numeru inv : to tworzę <br />';
                 $this->createArtifact($em, $i['inventory_number']);
-                echo 'Stworzylem teraz znow go szukam <br />';
+//                echo 'Stworzylem teraz znow go szukam <br />';
                 $findedArtifact = $em->getRepository('McvAdminBundle:Artifact')->findOneBy(array('inventoryNumber'=>$i['inventory_number']));
-                echo $findedArtifact ? 'znalazlem <br />' : 'nadal go nie znalazlem <br />';
+//                echo $findedArtifact ? 'znalazlem <br />' : 'nadal go nie znalazlem <br />';
                 $artifactObject = $em->find('McvAdminBundle:Artifact', $findedArtifact);
                 $fileModel = $this->saveFileToDb($i, $artifactObject);
                 $em->persist($fileModel);
                 $em->flush();
             }
+            FilesystemOrganizer::createDirs($this->getParameter('shared_dir').'/'.$i['inventory_number']);
             FilesystemOrganizer::moveToAnotherPlace(
                     $i['filepath'],
-                    $this->getParameter('shared_dir').'/'.$i['file_name']);
+                    $this->getParameter('shared_dir').'/'.$i['inventory_number'].'/'.$i['file_name']);
         }
     }
      /**
