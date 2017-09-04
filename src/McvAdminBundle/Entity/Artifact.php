@@ -5,7 +5,6 @@ namespace McvAdminBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\ManyToMany;
-use Doctrine\ORM\Mapping\OneToMany;
 
 /**
  * Artifact
@@ -39,7 +38,7 @@ class Artifact
     
      /**
      * Many Artifact could have many files
-     * @ManyToMany(targetEntity="Collection", mappedBy="filesArray")
+     * @ManyToMany(targetEntity="ArtifactFiles", mappedBy="filesArray")
      */
     private $artifactFiles;
     
