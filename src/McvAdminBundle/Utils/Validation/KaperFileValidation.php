@@ -42,7 +42,7 @@ class KaperFileValidation {
             'category_symbol'  => strtolower($exploded_name[2]),
             'file_extension'   => strtolower($exploded_name[3]),
             'file_name'        => strtolower($exploded_name[0].'_'.$exploded_name[1].'_'.$exploded_name[2].'.'.$exploded_name[3]),
-            'filepath'         => strtolower($this->filepath) 
+            'filepath'         => $this->filepath
         ];
         
         return $associativeNameArray;
