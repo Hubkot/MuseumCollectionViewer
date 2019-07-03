@@ -5,12 +5,13 @@ namespace McvAdminBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\OneToOne;
+use McvAdminBundle\Repository\ArtifactDescriptionRepository;
 
 /**
  * ArtifactDescription
  *
  * @ORM\Table(name="artifact_description")
- * @ORM\Entity(repositoryClass="McvAdminBundle\Repository\ArtifactDescriptionRepository")
+ * @ORM\Entity(repositoryClass="ArtifactDescriptionRepository")
  */
 class ArtifactDescription
 {
@@ -25,11 +26,10 @@ class ArtifactDescription
     
     /**
      * One description for one artifact
-     * @ORM\Column(name="artifact_id", type="integer")
-     * @OneToOne(targetEntity="Artifact")
-     * @JoinColumn(name="id", referencedColumnName="id")
+     * @OneToOne(targetEntity="Artifact", inversedBy="id")
+     * @JoinColumn(name="artifact_id",referencedColumnName="id")
      */
-    private $artifact_id;
+    private $artifactId;
     
     /**
      * @var string
@@ -196,11 +196,11 @@ class ArtifactDescription
      */
     public function getArtifactId()
     {
-        return $this->artifact_id;
+        return $this->artifactId;
     }
-    public function setArtifactId($artifact_id)
+    public function setArtifactId($artifactId)
     {
-     $this->artifact_id = $artifact_id;
+     $this->artifactId = $artifactId;
     }
     /**
      * Set title

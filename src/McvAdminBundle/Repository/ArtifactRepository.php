@@ -77,17 +77,20 @@ class ArtifactRepository extends EntityRepository
         
         return $query->execute();
     }
-    public function findAllDesc(){
-//        $dql = 'SELECT art FROM McvAdminBundle\Entity\Artifact art ORDER BY art.inventoryNumber DESC';
-//        $query = $this->getEntityManager()->createQuery($dql);
-        $id = 34;
+    public function findArtifactByInventory($inventoryNumber){
         $qb = $this->createQueryBuilder('a')
-//                ->andWhere('ac.id = :search')
+                ->andWhere('a.inventoryNumber = :search')
                 ->leftJoin('a.artifactFiles', 'af')
                 ->leftJoin('a.collectionArray', 'ac')
-                ->select('ac.name as colTitle, a.inventoryNumber as invNumb, ac.description as descip, af.filename as filename')
+                ->leftJoin('a.descritpionId', 'ad')
+                ->select('ac.name as colTitle,'
+                        . 'a.inventoryNumber as invNumb,'
+                        . 'a.title as title,'
+                        . 'ac.description as descip,'
+                        . 'af.filename as filename,'
+                        . 'af.categorySymbol as symbol')
                 ->addOrderBy('a.inventoryNumber','DESC')
-//                ->setParameter('search', $id)
+                ->setParameter('search', $inventoryNumber)
         ;        
         $query = $qb->getQuery();
         

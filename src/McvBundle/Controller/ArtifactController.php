@@ -54,7 +54,7 @@ class ArtifactController extends Controller{
         $viewArray = [];
         $desc = $this->getDoctrine()
                 ->getRepository('McvAdminBundle:Artifact')
-                ->findAllDesc();
+                ->findArtifactByInventory('MhmG-b-838');
         
         foreach ($desc as $d){
         var_dump($d);

@@ -5,6 +5,7 @@ namespace McvAdminBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\ManyToMany;
+use Doctrine\ORM\Mapping\OneToOne;
 
 /**
  * Artifact
@@ -43,6 +44,11 @@ class Artifact
     private $artifactFiles;
     
     /**
+     *
+     * @OneToOne(targetEntity="ArtifactDescription", mappedBy="artifactId")
+     */
+    private $descriptionId;
+    /**
      * Get id
      *
      * @return int
@@ -57,6 +63,7 @@ class Artifact
         $this->$id = $id;
         return $this;
     }
+ 
 
     /**
      * Set inventoryNumber
@@ -81,8 +88,6 @@ class Artifact
     {
         return $this->inventoryNumber;
     }
-  // ...
-  
     
     public function __toString()
     {

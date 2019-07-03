@@ -19,7 +19,10 @@ class ArtifactFactory implements ArtifactInterface {
         $this->inventoryNumber = $inventoryNumber;
     }
     public function create(){
-        $artifactM = new McvAdminBundle\Entity\Artifact();
+      $desc = $this->getDoctrine()
+                ->getRepository('McvAdminBundle:Artifact')
+                ->findAllDesc();
+      return $desc;
       
         //Tabele do połączenia z numerem
         //najpierw GetInNumbert - ID!
